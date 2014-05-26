@@ -1,0 +1,149 @@
+﻿html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+div.main
+{
+    padding-right : 150px;
+    padding-left : 150px;
+    text-align:center;
+}
+div.footer
+{
+    text-align:center;
+}
+h3.h3
+{
+    text-align:center;
+    margin:25px;
+}
+h5.h5
+{
+    margin:25px;
+}
+div.image
+{
+    text-align:centre;
+}
+/*Anchor tag button change part starts*/
+
+a.button {
+   display: -moz-inline-stack;
+   display: inline-block;
+   width: 170px;
+   height: 33px;
+   background: url("../../Images/button.png") no-repeat;
+   line-height: 33px;
+   vertical-align: text-middle;
+   text-align: center;
+   color: #ffffff;
+   font-family: Calibri;
+   font-size: 16px;
+   font-style: normal;
+   text-shadow: #222222 1px 1px 0;
+   text-decoration: none;
+}
+a.button > span {
+   display: -moz-inline-block;
+}
+
+a:hover.button,a:active.button {
+   display: -moz-inline-stack;
+   display: inline-block;
+   width: 170px;
+   height: 33px;
+   background: url("../../Images/button1.png") no-repeat;
+   line-height: 33px;
+   vertical-align: text-middle;
+   text-align: center;
+   color: #ffffff;
+   font-family: Calibri;
+   font-size: 16px;
+   font-style: normal;
+   text-shadow: #222222 1px 1px 0;
+   text-decoration: none;
+}
+a:hover.button > span {
+   display: -moz-inline-block;
+}
+
+/*Anchor tag button change part ends*/
+
+
+/* css related to top bar starts*/
+table.topbar 
+{
+   display: -moz-inline-stack;
+   display: inline-block;
+   width: 1400px;
+   height: 33px;
+   line-height: 33px;
+   text-align: center;
+   color: #ffffff;
+   font-family: Calibri;
+   font-size: 18px;
+   font-weight: bold;
+   font-style: normal;
+   text-shadow: #222222 1px 1px 0;
+}
+table.topbar > span {
+   display: -moz-inline-block;
+}
+
+a.topbar 
+{
+   padding-left:150px;
+   line-height: 33px;
+   text-align: center;
+   color: #ffffff;
+   font-family: Calibri;
+   font-size: 14px;
+   font-style: normal;
+   text-shadow: #222222 1px 1px 0;
+   text-decoration: none;
+}
+
+a:hover.topbar 
+{
+   padding-left:150px;
+   line-height: 33px;
+   text-align: center;
+   color: #6CDDE8;
+   font-family: Calibri;
+   font-size: 14px;
+   font-style: normal;
+   text-shadow: #222222 1px 1px 0;
+   text-decoration: none;
+}
+/* css related to top bar ends*/
+
+
+.content
+{
+    padding-right : 100px;
+    padding-left : 100px;
+    height:350px;
+    background-color:#E2E2F1;
+    text-align:left;
+}
+
+ol.round {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        ol.round li {
+            padding-left: 10px;
+            margin: 25px 0;
+        }
+
+
+
+        
+        

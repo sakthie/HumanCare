@@ -1,0 +1,1112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HealthCareNewModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="HealthCareNewModelStoreContainer">
+          <EntitySet Name="Doctor" EntityType="HealthCareNewModel.Store.Doctor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Doctor_AppntSlot" EntityType="HealthCareNewModel.Store.Doctor_AppntSlot" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Doctor_Room" EntityType="HealthCareNewModel.Store.Doctor_Room" store:Type="Tables" store:Schema="dbo" store:Name="Doctor_Room">
+            <DefiningQuery>SELECT 
+      [Doctor_Room].[doctorId] AS [doctorId], 
+      [Doctor_Room].[roomId] AS [roomId], 
+      [Doctor_Room].[startDateTime] AS [startDateTime], 
+      [Doctor_Room].[endDateTime] AS [endDateTime]
+      FROM [dbo].[Doctor_Room] AS [Doctor_Room]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Doctor_Specialization" EntityType="HealthCareNewModel.Store.Doctor_Specialization" store:Type="Tables" store:Schema="dbo" store:Name="Doctor_Specialization">
+            <DefiningQuery>SELECT 
+      [Doctor_Specialization].[doctorId] AS [doctorId], 
+      [Doctor_Specialization].[specId] AS [specId]
+      FROM [dbo].[Doctor_Specialization] AS [Doctor_Specialization]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Nationality" EntityType="HealthCareNewModel.Store.Nationality" store:Type="Tables" store:Schema="dbo" store:Name="Nationality">
+            <DefiningQuery>SELECT 
+      [Nationality].[Id] AS [Id], 
+      [Nationality].[Nationality] AS [Nationality]
+      FROM [dbo].[Nationality] AS [Nationality]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Patient" EntityType="HealthCareNewModel.Store.Patient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Patient_Appointment" EntityType="HealthCareNewModel.Store.Patient_Appointment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Patient_Prescription" EntityType="HealthCareNewModel.Store.Patient_Prescription" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Patient_Room" EntityType="HealthCareNewModel.Store.Patient_Room" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Patient_Treatment" EntityType="HealthCareNewModel.Store.Patient_Treatment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Prescription_Medicine" EntityType="HealthCareNewModel.Store.Prescription_Medicine" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Room" EntityType="HealthCareNewModel.Store.Room" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Specialization" EntityType="HealthCareNewModel.Store.Specialization" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Staff" EntityType="HealthCareNewModel.Store.Staff" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Doctor_AppntSlot_Doctor" Association="HealthCareNewModel.Store.FK_Doctor_AppntSlot_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Doctor_AppntSlot" EntitySet="Doctor_AppntSlot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Room_Doctor" Association="HealthCareNewModel.Store.FK_Doctor_Room_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Doctor_Room" EntitySet="Doctor_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Room_Room" Association="HealthCareNewModel.Store.FK_Doctor_Room_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Doctor_Room" EntitySet="Doctor_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Specialization_Doctor" Association="HealthCareNewModel.Store.FK_Doctor_Specialization_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Doctor_Specialization" EntitySet="Doctor_Specialization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Appointment_Patient" Association="HealthCareNewModel.Store.FK_Patient_Appointment_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Prescription_Patient" Association="HealthCareNewModel.Store.FK_Patient_Prescription_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Room_Patient" Association="HealthCareNewModel.Store.FK_Patient_Room_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Patient_Room" EntitySet="Patient_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Treatment_Patient" Association="HealthCareNewModel.Store.FK_Patient_Treatment_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Patient_Treatment" EntitySet="Patient_Treatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Treatment_Patient_Prescription" Association="HealthCareNewModel.Store.FK_Patient_Treatment_Patient_Prescription">
+            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
+            <End Role="Patient_Treatment" EntitySet="Patient_Treatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Medicine_Patient_Prescription" Association="HealthCareNewModel.Store.FK_Prescription_Medicine_Patient_Prescription">
+            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
+            <End Role="Prescription_Medicine" EntitySet="Prescription_Medicine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_Patient_Room" Association="HealthCareNewModel.Store.FK_Room_Patient_Room">
+            <End Role="Patient_Room" EntitySet="Patient_Room" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Room" Association="HealthCareNewModel.Store.FK_Staff_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="doctorId" />
+          </Key>
+          <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="dob" Type="date" Nullable="false" />
+          <Property Name="gender" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="nationality" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="icNum" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="street" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="area" Type="varchar" MaxLength="30" />
+          <Property Name="country" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="postalCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctor_AppntSlot">
+          <Key>
+            <PropertyRef Name="dateId" />
+          </Key>
+          <Property Name="dateId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="appntDate" Type="date" Nullable="false" />
+          <Property Name="slotAvaliable" Type="int" />
+          <Property Name="slotAllocated" Type="int" />
+          <Property Name="workStartTime" Type="time" />
+          <Property Name="workEndTime" Type="time" />
+          <Property Name="timePerSlot" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'HealthCareNew.dbo.Doctor_Room' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Doctor_Room">
+          <Key>
+            <PropertyRef Name="doctorId" />
+          </Key>
+          <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="roomId" Type="varchar" MaxLength="10" />
+          <Property Name="startDateTime" Type="datetime" />
+          <Property Name="endDateTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'HealthCareNew.dbo.Doctor_Specialization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Doctor_Specialization">
+          <Key>
+            <PropertyRef Name="doctorId" />
+            <PropertyRef Name="specId" />
+          </Key>
+          <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="specId" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'HealthCareNew.dbo.Nationality' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="patientId" />
+          </Key>
+          <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="gender" Type="nchar" Nullable="false" MaxLength="1" />
+          <Property Name="dob" Type="date" Nullable="false" />
+          <Property Name="nationality" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="icNum" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="street" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="area" Type="varchar" MaxLength="30" />
+          <Property Name="country" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="postalCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient_Appointment">
+          <Key>
+            <PropertyRef Name="appntId" />
+          </Key>
+          <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="appntId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="dateId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="upcomingPast" Type="varchar" MaxLength="10" />
+          <Property Name="doctorId" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="startTime" Type="datetime" />
+          <Property Name="endTime" Type="datetime" />
+          <Property Name="prescriptionId" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Patient_Prescription">
+          <Key>
+            <PropertyRef Name="prescriptionId" />
+          </Key>
+          <Property Name="prescriptionId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="dateIssued" Type="date" Nullable="false" />
+          <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Patient_Room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="roomId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="fromDate" Type="date" />
+          <Property Name="toDate" Type="date" />
+          <Property Name="treatmentId" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6035: The relationship 'FK_Doctor_Patient_Treatment' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+      -->
+        <EntityType Name="Patient_Treatment">
+          <Key>
+            <PropertyRef Name="treatmentId" />
+          </Key>
+          <Property Name="treatmentId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="prescriptionId" Type="varchar" MaxLength="10" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="roomId" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Prescription_Medicine">
+          <Key>
+            <PropertyRef Name="medicineId" />
+          </Key>
+          <Property Name="medicineId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="prescriptionId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="days" Type="int" />
+          <Property Name="inTake" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="roomId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="roomNum" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="costPerDay" Type="float" />
+          <Property Name="vacancy" Type="varchar" MaxLength="10" />
+          <Property Name="phoneNum" Type="int" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="location" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Specialization">
+          <Key>
+            <PropertyRef Name="specId" />
+          </Key>
+          <Property Name="specId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="specialize" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="dob" Type="date" Nullable="false" />
+          <Property Name="gender" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="35" />
+          <Property Name="icNum" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="nationality" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="roomId" Type="varchar" MaxLength="10" />
+          <Property Name="street" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="area" Type="varchar" MaxLength="30" />
+          <Property Name="country" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="postalCode" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Doctor_AppntSlot_Doctor">
+          <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
+          <End Role="Doctor_AppntSlot" Type="HealthCareNewModel.Store.Doctor_AppntSlot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="Doctor_AppntSlot">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Room_Doctor">
+          <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
+          <End Role="Doctor_Room" Type="HealthCareNewModel.Store.Doctor_Room" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="Doctor_Room">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Room_Room">
+          <End Role="Room" Type="HealthCareNewModel.Store.Room" Multiplicity="0..1" />
+          <End Role="Doctor_Room" Type="HealthCareNewModel.Store.Doctor_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Doctor_Room">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Specialization_Doctor">
+          <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
+          <End Role="Doctor_Specialization" Type="HealthCareNewModel.Store.Doctor_Specialization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="Doctor_Specialization">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Appointment_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Store.Patient" Multiplicity="1" />
+          <End Role="Patient_Appointment" Type="HealthCareNewModel.Store.Patient_Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Appointment">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Prescription_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Store.Patient" Multiplicity="1" />
+          <End Role="Patient_Prescription" Type="HealthCareNewModel.Store.Patient_Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Prescription">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Room_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Store.Patient" Multiplicity="1" />
+          <End Role="Patient_Room" Type="HealthCareNewModel.Store.Patient_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Room">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Treatment_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Store.Patient" Multiplicity="1" />
+          <End Role="Patient_Treatment" Type="HealthCareNewModel.Store.Patient_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Treatment">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Treatment_Patient_Prescription">
+          <End Role="Patient_Prescription" Type="HealthCareNewModel.Store.Patient_Prescription" Multiplicity="0..1" />
+          <End Role="Patient_Treatment" Type="HealthCareNewModel.Store.Patient_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Prescription">
+              <PropertyRef Name="prescriptionId" />
+            </Principal>
+            <Dependent Role="Patient_Treatment">
+              <PropertyRef Name="prescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Medicine_Patient_Prescription">
+          <End Role="Patient_Prescription" Type="HealthCareNewModel.Store.Patient_Prescription" Multiplicity="1" />
+          <End Role="Prescription_Medicine" Type="HealthCareNewModel.Store.Prescription_Medicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Prescription">
+              <PropertyRef Name="prescriptionId" />
+            </Principal>
+            <Dependent Role="Prescription_Medicine">
+              <PropertyRef Name="prescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_Patient_Room">
+          <End Role="Patient_Room" Type="HealthCareNewModel.Store.Patient_Room" Multiplicity="1" />
+          <End Role="Room" Type="HealthCareNewModel.Store.Room" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Room">
+          <End Role="Room" Type="HealthCareNewModel.Store.Room" Multiplicity="0..1" />
+          <End Role="Staff" Type="HealthCareNewModel.Store.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HealthCareNewModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="HealthCareNewEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Doctors" EntityType="HealthCareNewModel.Doctor" />
+          <EntitySet Name="Doctor_AppntSlot" EntityType="HealthCareNewModel.Doctor_AppntSlot" />
+          <EntitySet Name="Doctor_Room" EntityType="HealthCareNewModel.Doctor_Room" />
+          <EntitySet Name="Doctor_Specialization" EntityType="HealthCareNewModel.Doctor_Specialization" />
+          <EntitySet Name="Patients" EntityType="HealthCareNewModel.Patient" />
+          <EntitySet Name="Patient_Appointment" EntityType="HealthCareNewModel.Patient_Appointment" />
+          <EntitySet Name="Patient_Prescription" EntityType="HealthCareNewModel.Patient_Prescription" />
+          <EntitySet Name="Patient_Room" EntityType="HealthCareNewModel.Patient_Room" />
+          <EntitySet Name="Patient_Treatment" EntityType="HealthCareNewModel.Patient_Treatment" />
+          <EntitySet Name="Prescription_Medicine" EntityType="HealthCareNewModel.Prescription_Medicine" />
+          <EntitySet Name="Rooms" EntityType="HealthCareNewModel.Room" />
+          <EntitySet Name="Specializations" EntityType="HealthCareNewModel.Specialization" />
+          <EntitySet Name="Staffs" EntityType="HealthCareNewModel.Staff" />
+          <AssociationSet Name="FK_Doctor_AppntSlot_Doctor" Association="HealthCareNewModel.FK_Doctor_AppntSlot_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Doctor_AppntSlot" EntitySet="Doctor_AppntSlot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Room_Doctor" Association="HealthCareNewModel.FK_Doctor_Room_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Doctor_Room" EntitySet="Doctor_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Specialization_Doctor" Association="HealthCareNewModel.FK_Doctor_Specialization_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Doctor_Specialization" EntitySet="Doctor_Specialization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Room_Room" Association="HealthCareNewModel.FK_Doctor_Room_Room">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Doctor_Room" EntitySet="Doctor_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Appointment_Patient" Association="HealthCareNewModel.FK_Patient_Appointment_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Prescription_Patient" Association="HealthCareNewModel.FK_Patient_Prescription_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Room_Patient" Association="HealthCareNewModel.FK_Patient_Room_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Patient_Room" EntitySet="Patient_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Treatment_Patient" Association="HealthCareNewModel.FK_Patient_Treatment_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Patient_Treatment" EntitySet="Patient_Treatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Treatment_Patient_Prescription" Association="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription">
+            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
+            <End Role="Patient_Treatment" EntitySet="Patient_Treatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Medicine_Patient_Prescription" Association="HealthCareNewModel.FK_Prescription_Medicine_Patient_Prescription">
+            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
+            <End Role="Prescription_Medicine" EntitySet="Prescription_Medicine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_Patient_Room" Association="HealthCareNewModel.FK_Room_Patient_Room">
+            <End Role="Patient_Room" EntitySet="Patient_Room" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Room" Association="HealthCareNewModel.FK_Staff_Room">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <EntitySet Name="Nationalities" EntityType="HealthCareNewModel.Nationality" />
+        </EntityContainer>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="doctorId" />
+          </Key>
+          <Property Name="doctorId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="dob" Type="DateTime" Nullable="false" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="startDate" Type="DateTime" />
+          <Property Name="endDate" Type="DateTime" />
+          <Property Name="nationality" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="icNum" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="street" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="area" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="postalCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doctor_AppntSlot" Relationship="HealthCareNewModel.FK_Doctor_AppntSlot_Doctor" FromRole="Doctor" ToRole="Doctor_AppntSlot" />
+          <NavigationProperty Name="Doctor_Room" Relationship="HealthCareNewModel.FK_Doctor_Room_Doctor" FromRole="Doctor" ToRole="Doctor_Room" />
+          <NavigationProperty Name="Doctor_Specialization" Relationship="HealthCareNewModel.FK_Doctor_Specialization_Doctor" FromRole="Doctor" ToRole="Doctor_Specialization" />
+        </EntityType>
+        <EntityType Name="Doctor_AppntSlot">
+          <Key>
+            <PropertyRef Name="dateId" />
+          </Key>
+          <Property Name="dateId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="doctorId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="appntDate" Type="DateTime" Nullable="false" />
+          <Property Name="slotAvaliable" Type="Int32" />
+          <Property Name="slotAllocated" Type="Int32" />
+          <Property Name="workStartTime" Type="Time" />
+          <Property Name="workEndTime" Type="Time" />
+          <Property Name="timePerSlot" Type="Int32" />
+          <NavigationProperty Name="Doctor" Relationship="HealthCareNewModel.FK_Doctor_AppntSlot_Doctor" FromRole="Doctor_AppntSlot" ToRole="Doctor" />
+        </EntityType>
+        <EntityType Name="Doctor_Room">
+          <Key>
+            <PropertyRef Name="doctorId" />
+          </Key>
+          <Property Name="doctorId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="roomId" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="startDateTime" Type="DateTime" />
+          <Property Name="endDateTime" Type="DateTime" />
+          <NavigationProperty Name="Doctor" Relationship="HealthCareNewModel.FK_Doctor_Room_Doctor" FromRole="Doctor_Room" ToRole="Doctor" />
+          <NavigationProperty Name="Room" Relationship="HealthCareNewModel.FK_Doctor_Room_Room" FromRole="Doctor_Room" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Doctor_Specialization">
+          <Key>
+            <PropertyRef Name="doctorId" />
+            <PropertyRef Name="specId" />
+          </Key>
+          <Property Name="doctorId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="specId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Doctor" Relationship="HealthCareNewModel.FK_Doctor_Specialization_Doctor" FromRole="Doctor_Specialization" ToRole="Doctor" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="patientId" />
+          </Key>
+          <Property Name="patientId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="true" />
+          <Property Name="dob" Type="DateTime" Nullable="false" />
+          <Property Name="nationality" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="icNum" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="street" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="area" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="postalCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient_Appointment" Relationship="HealthCareNewModel.FK_Patient_Appointment_Patient" FromRole="Patient" ToRole="Patient_Appointment" />
+          <NavigationProperty Name="Patient_Prescription" Relationship="HealthCareNewModel.FK_Patient_Prescription_Patient" FromRole="Patient" ToRole="Patient_Prescription" />
+          <NavigationProperty Name="Patient_Room" Relationship="HealthCareNewModel.FK_Patient_Room_Patient" FromRole="Patient" ToRole="Patient_Room" />
+          <NavigationProperty Name="Patient_Treatment" Relationship="HealthCareNewModel.FK_Patient_Treatment_Patient" FromRole="Patient" ToRole="Patient_Treatment" />
+        </EntityType>
+        <EntityType Name="Patient_Appointment">
+          <Key>
+            <PropertyRef Name="appntId" />
+          </Key>
+          <Property Name="patientId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="appntId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="dateId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="upcomingPast" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="doctorId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="startTime" Type="DateTime" />
+          <Property Name="endTime" Type="DateTime" />
+          <Property Name="prescriptionId" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Patient" Relationship="HealthCareNewModel.FK_Patient_Appointment_Patient" FromRole="Patient_Appointment" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Patient_Prescription">
+          <Key>
+            <PropertyRef Name="prescriptionId" />
+          </Key>
+          <Property Name="prescriptionId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="patientId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="dateIssued" Type="DateTime" Nullable="false" />
+          <Property Name="doctorId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Patient" Relationship="HealthCareNewModel.FK_Patient_Prescription_Patient" FromRole="Patient_Prescription" ToRole="Patient" />
+          <NavigationProperty Name="Patient_Treatment" Relationship="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription" FromRole="Patient_Prescription" ToRole="Patient_Treatment" />
+          <NavigationProperty Name="Prescription_Medicine" Relationship="HealthCareNewModel.FK_Prescription_Medicine_Patient_Prescription" FromRole="Patient_Prescription" ToRole="Prescription_Medicine" />
+        </EntityType>
+        <EntityType Name="Patient_Room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="patientId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="roomId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="fromDate" Type="DateTime" />
+          <Property Name="toDate" Type="DateTime" />
+          <Property Name="treatmentId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Patient" Relationship="HealthCareNewModel.FK_Patient_Room_Patient" FromRole="Patient_Room" ToRole="Patient" />
+          <NavigationProperty Name="Room" Relationship="HealthCareNewModel.FK_Room_Patient_Room" FromRole="Patient_Room" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Patient_Treatment">
+          <Key>
+            <PropertyRef Name="treatmentId" />
+          </Key>
+          <Property Name="treatmentId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="patientId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="doctorId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="prescriptionId" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="startDate" Type="DateTime" />
+          <Property Name="endDate" Type="DateTime" />
+          <Property Name="roomId" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Patient" Relationship="HealthCareNewModel.FK_Patient_Treatment_Patient" FromRole="Patient_Treatment" ToRole="Patient" />
+          <NavigationProperty Name="Patient_Prescription" Relationship="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription" FromRole="Patient_Treatment" ToRole="Patient_Prescription" />
+        </EntityType>
+        <EntityType Name="Prescription_Medicine">
+          <Key>
+            <PropertyRef Name="medicineId" />
+          </Key>
+          <Property Name="medicineId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="prescriptionId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="days" Type="Int32" />
+          <Property Name="inTake" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Patient_Prescription" Relationship="HealthCareNewModel.FK_Prescription_Medicine_Patient_Prescription" FromRole="Prescription_Medicine" ToRole="Patient_Prescription" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="roomId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="roomNum" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="costPerDay" Type="Double" />
+          <Property Name="vacancy" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="phoneNum" Type="Int32" />
+          <Property Name="startDate" Type="DateTime" />
+          <Property Name="endDate" Type="DateTime" />
+          <Property Name="location" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Doctor_Room" Relationship="HealthCareNewModel.FK_Doctor_Room_Room" FromRole="Room" ToRole="Doctor_Room" />
+          <NavigationProperty Name="Patient_Room" Relationship="HealthCareNewModel.FK_Room_Patient_Room" FromRole="Room" ToRole="Patient_Room" />
+          <NavigationProperty Name="Staffs" Relationship="HealthCareNewModel.FK_Staff_Room" FromRole="Room" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Specialization">
+          <Key>
+            <PropertyRef Name="specId" />
+          </Key>
+          <Property Name="specId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="specialize" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="dob" Type="DateTime" Nullable="false" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="35" Unicode="false" FixedLength="false" />
+          <Property Name="icNum" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="nationality" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="roomId" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="street" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="area" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="postalCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Room" Relationship="HealthCareNewModel.FK_Staff_Room" FromRole="Staff" ToRole="Room" />
+        </EntityType>
+        <Association Name="FK_Doctor_AppntSlot_Doctor">
+          <End Role="Doctor" Type="HealthCareNewModel.Doctor" Multiplicity="1" />
+          <End Role="Doctor_AppntSlot" Type="HealthCareNewModel.Doctor_AppntSlot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="Doctor_AppntSlot">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Room_Doctor">
+          <End Role="Doctor" Type="HealthCareNewModel.Doctor" Multiplicity="1" />
+          <End Role="Doctor_Room" Type="HealthCareNewModel.Doctor_Room" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="Doctor_Room">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Specialization_Doctor">
+          <End Role="Doctor" Type="HealthCareNewModel.Doctor" Multiplicity="1" />
+          <End Role="Doctor_Specialization" Type="HealthCareNewModel.Doctor_Specialization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="Doctor_Specialization">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Room_Room">
+          <End Role="Room" Type="HealthCareNewModel.Room" Multiplicity="0..1" />
+          <End Role="Doctor_Room" Type="HealthCareNewModel.Doctor_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Doctor_Room">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Appointment_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Patient" Multiplicity="1" />
+          <End Role="Patient_Appointment" Type="HealthCareNewModel.Patient_Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Appointment">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Prescription_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Patient" Multiplicity="1" />
+          <End Role="Patient_Prescription" Type="HealthCareNewModel.Patient_Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Prescription">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Room_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Patient" Multiplicity="1" />
+          <End Role="Patient_Room" Type="HealthCareNewModel.Patient_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Room">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Treatment_Patient">
+          <End Role="Patient" Type="HealthCareNewModel.Patient" Multiplicity="1" />
+          <End Role="Patient_Treatment" Type="HealthCareNewModel.Patient_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patientId" />
+            </Principal>
+            <Dependent Role="Patient_Treatment">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Treatment_Patient_Prescription">
+          <End Role="Patient_Prescription" Type="HealthCareNewModel.Patient_Prescription" Multiplicity="0..1" />
+          <End Role="Patient_Treatment" Type="HealthCareNewModel.Patient_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Prescription">
+              <PropertyRef Name="prescriptionId" />
+            </Principal>
+            <Dependent Role="Patient_Treatment">
+              <PropertyRef Name="prescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Medicine_Patient_Prescription">
+          <End Role="Patient_Prescription" Type="HealthCareNewModel.Patient_Prescription" Multiplicity="1" />
+          <End Role="Prescription_Medicine" Type="HealthCareNewModel.Prescription_Medicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Prescription">
+              <PropertyRef Name="prescriptionId" />
+            </Principal>
+            <Dependent Role="Prescription_Medicine">
+              <PropertyRef Name="prescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_Patient_Room">
+          <End Role="Patient_Room" Type="HealthCareNewModel.Patient_Room" Multiplicity="1" />
+          <End Role="Room" Type="HealthCareNewModel.Room" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Room">
+          <End Role="Room" Type="HealthCareNewModel.Room" Multiplicity="0..1" />
+          <End Role="Staff" Type="HealthCareNewModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nationality1" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HealthCareNewModelStoreContainer" CdmEntityContainer="HealthCareNewEntities">
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="icNum" ColumnName="icNum" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctor_AppntSlot">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Doctor_AppntSlot">
+              <MappingFragment StoreEntitySet="Doctor_AppntSlot">
+                <ScalarProperty Name="dateId" ColumnName="dateId" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="appntDate" ColumnName="appntDate" />
+                <ScalarProperty Name="slotAvaliable" ColumnName="slotAvaliable" />
+                <ScalarProperty Name="slotAllocated" ColumnName="slotAllocated" />
+                <ScalarProperty Name="workStartTime" ColumnName="workStartTime" />
+                <ScalarProperty Name="workEndTime" ColumnName="workEndTime" />
+                <ScalarProperty Name="timePerSlot" ColumnName="timePerSlot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctor_Room">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Doctor_Room">
+              <MappingFragment StoreEntitySet="Doctor_Room">
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="startDateTime" ColumnName="startDateTime" />
+                <ScalarProperty Name="endDateTime" ColumnName="endDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctor_Specialization">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Doctor_Specialization">
+              <MappingFragment StoreEntitySet="Doctor_Specialization">
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="specId" ColumnName="specId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="icNum" ColumnName="icNum" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient_Appointment">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Appointment">
+              <MappingFragment StoreEntitySet="Patient_Appointment">
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="appntId" ColumnName="appntId" />
+                <ScalarProperty Name="dateId" ColumnName="dateId" />
+                <ScalarProperty Name="upcomingPast" ColumnName="upcomingPast" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient_Prescription">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Prescription">
+              <MappingFragment StoreEntitySet="Patient_Prescription">
+                <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="dateIssued" ColumnName="dateIssued" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient_Room">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Room">
+              <MappingFragment StoreEntitySet="Patient_Room">
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+                <ScalarProperty Name="toDate" ColumnName="toDate" />
+                <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient_Treatment">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Treatment">
+              <MappingFragment StoreEntitySet="Patient_Treatment">
+                <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescription_Medicine">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Prescription_Medicine">
+              <MappingFragment StoreEntitySet="Prescription_Medicine">
+                <ScalarProperty Name="medicineId" ColumnName="medicineId" />
+                <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="days" ColumnName="days" />
+                <ScalarProperty Name="inTake" ColumnName="inTake" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="roomNum" ColumnName="roomNum" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="costPerDay" ColumnName="costPerDay" />
+                <ScalarProperty Name="vacancy" ColumnName="vacancy" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="location" ColumnName="location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specializations">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Specialization">
+              <MappingFragment StoreEntitySet="Specialization">
+                <ScalarProperty Name="specId" ColumnName="specId" />
+                <ScalarProperty Name="specialize" ColumnName="specialize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="icNum" ColumnName="icNum" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nationalities">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Nationality">
+              <MappingFragment StoreEntitySet="Nationality">
+                <ScalarProperty Name="Nationality1" ColumnName="Nationality" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="HumanCare" ZoomLevel="99">
+        <EntityTypeShape EntityType="HealthCareNewModel.Doctor" Width="1.5" PointX="5.25" PointY="20.875" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Doctor_AppntSlot" Width="1.5" PointX="7.5" PointY="24.375" Height="2.749492187499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Doctor_Room" Width="1.5" PointX="7.5" PointY="15.875" Height="2.1725878906250014" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Doctor_Specialization" Width="1.5" PointX="7.5" PointY="27.875" Height="1.595683593749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient" Width="1.5" PointX="0.75" PointY="8.375" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Appointment" Width="1.5" PointX="3" PointY="5" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Prescription" Width="1.5" PointX="3" PointY="8.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Room" Width="1.5" PointX="3" PointY="16.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Treatment" Width="1.5" PointX="5.25" PointY="8" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Prescription_Medicine" Width="1.5" PointX="5.25" PointY="12.375" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Room" Width="1.5" PointX="5.25" PointY="16.25" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Specialization" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Staff" Width="1.5" PointX="7.5" PointY="18.875" Height="3.9033007812500031" IsExpanded="true" />
+        <AssociationConnector Association="HealthCareNewModel.FK_Doctor_AppntSlot_Doctor" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="24.768951822916666" />
+          <ConnectorPoint PointX="7.5" PointY="24.768951822916666" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Doctor_Room_Doctor" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="20.876152846153843" />
+          <ConnectorPoint PointX="7.125" PointY="20.501152846153843" />
+          <ConnectorPoint PointX="7.125" PointY="16.9612939453125" />
+          <ConnectorPoint PointX="7.5" PointY="16.9612939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Doctor_Specialization_Doctor" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="25.162903645833332" />
+          <ConnectorPoint PointX="6" PointY="28.672841796874998" />
+          <ConnectorPoint PointX="7.5" PointY="28.672841796874998" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Doctor_Room_Room" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="17.566940917968751" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="17.566940917968751" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="17.566940917968751" />
+          <ConnectorPoint PointX="7.5" PointY="17.566940917968751" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Patient_Appointment_Patient" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="8.375" />
+          <ConnectorPoint PointX="1.5" PointY="6.4708968098958337" />
+          <ConnectorPoint PointX="3" PointY="6.4708968098958337" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Patient_Prescription_Patient" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.9324446614583337" />
+          <ConnectorPoint PointX="3" PointY="9.9324446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Patient_Room_Patient" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="12.470602213541667" />
+          <ConnectorPoint PointX="1.5" PointY="17.932444661458334" />
+          <ConnectorPoint PointX="3" PointY="17.932444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Patient_Treatment_Patient" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.53125" />
+          <ConnectorPoint PointX="5.25" PointY="8.53125" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="9.8458968098958337" />
+          <ConnectorPoint PointX="5.25" PointY="9.8458968098958337" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Prescription_Medicine_Patient_Prescription" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="11.114889322916667" />
+          <ConnectorPoint PointX="3.75" PointY="13.653595377604166" />
+          <ConnectorPoint PointX="5.25" PointY="13.653595377604166" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Room_Patient_Room" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="17.932444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="17.932444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="HealthCareNewModel.FK_Staff_Room" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="19.321848958333334" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="19.321848958333334" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="19.321848958333334" />
+          <ConnectorPoint PointX="7.5" PointY="19.321848958333334" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HealthCareNewModel.Nationality" Width="1.5" PointX="3.375" PointY="0.75" Height="1.4033821614583388" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

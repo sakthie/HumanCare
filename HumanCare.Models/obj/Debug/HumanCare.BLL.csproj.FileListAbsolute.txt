@@ -1,0 +1,19 @@
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll.config
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.pdb
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\EntityFramework.dll
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.dll
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.pdb
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\EntityFramework.xml
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.csprojResolveAssemblyReference.cache
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.dll
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.pdb
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll.config
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.pdb
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.dll
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.pdb
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\bin\Debug\EntityFramework.xml
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.csprojResolveAssemblyReference.cache
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.dll
+C:\Users\sakthi\Desktop\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.pdb

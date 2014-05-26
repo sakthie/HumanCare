@@ -1,0 +1,8 @@
+c:\users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\HumanCare.Models.dll
+c:\users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\HumanCare.Models.pdb
+c:\users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\obj\Debug\HumanCare.Models.dll
+c:\users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\obj\Debug\HumanCare.Models.pdb
+c:\users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\EntityFramework.dll
+c:\users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\EntityFramework.xml
+c:\users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\bin\Debug\HumanCare.Models.dll.config
+C:\Users\sakthi\documents\visual studio 2010\Projects\HumanCare\HumanCare.Models\obj\Debug\HumanCare.Models.csprojResolveAssemblyReference.cache

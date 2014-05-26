@@ -1,0 +1,21 @@
+﻿@if (Request.IsAuthenticated) {
+    <text>
+        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+    </text>
+} else {
+      <table class="topbar" background="../../Images/topbar.png">
+            <tr> 
+            <td>
+                <a class="topbar" href="google.com">Find a Doctor</a>
+                <a class="topbar" href="google.com">Application Manual</a>
+                <a class="topbar" href="google.com">Reports</a>
+                <a class="topbar" href="@Url.Action("Register", "Account")">Register</a>
+                <a class="topbar" href="@Url.Action("Login", "Account")">User Login</a>
+            </td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,5 @@
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll.config
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.pdb
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.dll
+C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.pdb

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Human Care Hospital management system</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+      <div class="Main"> 
+        <header>
+             <div>
+                <div>
+                    <section id="toppanel">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                </div>
+                <div id="Mainbutton" class="main">
+                  <div id="image" class="image">
+                <img src="../../Images/hospital-management-erp.jpg" alt="Smiley face" height="150" width="700" /><br />
+              </div>
+                  <div id="buttons">
+                <a class="button" href="@Url.Action("Index","Home")">Home</a> 
+                <a class="button" href="@Url.Action("PatientMgmt","Home")">Patient Management</a> 
+                <a class="button" href="@Url.Action("PatientAppt","Home")">Patient Appointment</a>
+                <a class="button" href="@Url.Action("PatientRoom","Home")">Patient Room Booking</a>
+                <a class="button" href="@Url.Action("DoctorsArena","Home")">Doctors arena</a> 
+                <a class="button" href="@Url.Action("Billing","Home")">Hospital billing</a> 
+              </div>
+                </div>
+             </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div id="footer" class="footer">
+                 Humancare.com © 2014. All Rights Reserved. <a href="http://google.com">Privacy Policy</a> 
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+        </div>
+    </body>
+</html>
