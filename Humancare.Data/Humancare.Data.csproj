@@ -65,10 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="dbbackup\HealthCare.bak" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="dbbackup\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
