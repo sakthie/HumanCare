@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Patient.master.cs" Inherits="HumareCareWeb.Master.Patient" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="../Styles/js-image-slider.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/js-image-slider.js" type="text/javascript"></script>
+    <link href="../Styles/generic.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/website.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<%--<div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    My ASP.NET Application
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>--%>
+<body>
+    <form id="Form1" runat="server">
+    <header>
+    <table class="topbar" background="../Images/topbar.png">
+        <tr> 
+            <td>
+                <a class="topbar" href="HomePage.aspx">Home</a>
+                <a class="topbar" href="PatientAppointment.aspx">Patient Appointment</a>
+                <a class="topbar" href="PatientManagement.aspx">Patient Management</a>
+            </td>
+        </tr>
+    </table>
+</header>
+    <div class="main">
+        <div id="header">
+        <div id="sliderFrame">
+        <div id="slider">
+            <%--<a href="http://www.menucool.com/javascript-image-slider" target="_blank">--%>            
+            <img src="../Images/education.jpg" />
+            <img src="../Images/research.jpg" />
+            <img src="../Images/patientcare.jpg" />
+        </div>
+        <div id="htmlcaption" style="display: none;">
+            <em>HTML</em> caption. Link to <a href="http://www.google.com/">Google</a>.
+        </div>
+    </div>
+           <%-- <div id="image" class="image">
+                <img src="Images/hospital-management-erp.jpg" alt="Smiley face" height="150" width="700"><br />
+            </div>--%>
+            <%--<div id="buttons">
+                <a class="button" href="/">Home</a> <a class="button" href="PatientManagement.aspx">
+                    Patient Management</a> <a class="button" href="PatientAppointment.aspx">Patient Appointment</a>
+                <a class="button" href="PatientRoom.aspx">Patient Room Booking</a> <a class="button"
+                    href="DoctorsArena.aspx">Doctors arena</a> <a class="button" href="Billing.aspx">Hospital
+                        billing</a>
+            </div>--%>
+        </div>
+       <%-- 
+        <div id="footer" class="footer">
+            Humancare.com © 2014. All Rights Reserved. <a href="http://google.com">Privacy Policy</a>
+        </div>--%>
+    </div>
+</body>
+<div class="main">
+    <asp:contentplaceholder id="MainContent" runat="server" />
+</div>
+<div class="clear">
+</div>
+<div class="footer">
+</div>
+</form> </body>
+</html>

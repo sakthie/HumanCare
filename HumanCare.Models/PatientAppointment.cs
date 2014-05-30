@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using Humancare.Data;
 using System.Globalization;
+using System.Security.Permissions;
 
 
 namespace HumanCare.BLL
 {
+    //[PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
+    //[PrincipalPermission(SecurityAction.Demand, Role = "Patient")]
+   
     public class PatientAppointment
     {
         Patient_Appointment appointobj = new Patient_Appointment();
+        
         public string createpatientappointment(string patientid, String appntid, string dateid, string doctorid, DateTime start, DateTime end, string prescid)
         {
             using (HealthCareNewEntities db = new HealthCareNewEntities())
@@ -379,6 +384,5 @@ namespace HumanCare.BLL
     //    public DateTime workEndTime { get; set; }
     //    // Other field you may need from the Product entity
     //}
-
 
 }

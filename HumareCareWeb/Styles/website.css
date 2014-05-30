@@ -38,7 +38,7 @@ a.button {
    display: inline-block;
    width: 170px;
    height: 33px;
-   background: url("../../Images/button.png") no-repeat;
+   background: url("../Images/button.png") no-repeat;
    line-height: 33px;
    vertical-align: text-middle;
    text-align: center;
@@ -58,7 +58,7 @@ a:hover.button,a:active.button {
    display: inline-block;
    width: 170px;
    height: 33px;
-   background: url("../../Images/button1.png") no-repeat;
+   background: url("../Images/button1.png") no-repeat;
    line-height: 33px;
    vertical-align: text-middle;
    text-align: center;

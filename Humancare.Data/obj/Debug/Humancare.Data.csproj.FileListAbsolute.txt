@@ -3,3 +3,8 @@ C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\b
 C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.pdb
 C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.dll
 C:\Users\sakthi\Documents\Visual Studio 2010\Projects\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.pdb
+D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll.config
+D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll
+D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.pdb
+D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.dll
+D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.pdb

@@ -18,3 +18,12 @@ C:\Users\sakthi\Desktop\HumanCare\HumareCareWeb\bin\EntityFramework.xml
 C:\Users\sakthi\Desktop\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.csprojResolveAssemblyReference.cache
 C:\Users\sakthi\Desktop\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.dll
 C:\Users\sakthi\Desktop\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.pdb
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\bin\HumareCareWeb.dll
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\bin\HumareCareWeb.pdb
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\bin\HumanCare.BLL.dll
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\bin\Humancare.Data.dll
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\bin\Humancare.Data.pdb
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\bin\HumanCare.BLL.pdb
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.csprojResolveAssemblyReference.cache
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.dll
+D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.pdb

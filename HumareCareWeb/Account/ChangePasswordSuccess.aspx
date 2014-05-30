@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Change Password" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
+﻿<%@ Page Title="Change Password" Language="C#" MasterPageFile="~/Master/Site.Master" AutoEventWireup="true"
     CodeBehind="ChangePasswordSuccess.aspx.cs" Inherits="HumareCareWeb.Account.ChangePasswordSuccess" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
