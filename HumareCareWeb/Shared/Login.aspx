@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="/Master/Site.Master" AutoEventWireup="true"
     CodeBehind="Login.aspx.cs" Inherits="HumareCareWeb.WebForm6" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">

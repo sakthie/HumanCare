@@ -7,7 +7,12 @@ using System.Web.UI.WebControls;
 using HumanCare.BLL;
 using System.Web.Security;
 using System.Globalization;
+using HumareCareWeb.loginBasedonRoles;
 
+/**
+ * Author - Sakthi.
+ * 
+ * */
 
 namespace HumareCareWeb
 {
@@ -18,8 +23,7 @@ namespace HumareCareWeb
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!User.Identity.IsAuthenticated)
-                FormsAuthentication.RedirectToLoginPage();
+            Utility.ValidateUser(User);
              
 
             if (!IsPostBack)
@@ -27,59 +31,7 @@ namespace HumareCareWeb
             GetNationality();
             GetPrefferedDates();
             GetAllDoctor();
-            //appointment.SelectPreferredTimeSlot();
-
-            try
-            {
-                //DateTime oCurrentDate = DateTime.Now.AddDays(-1);
-                //DateTime oCurrentDate = new DateTime(2014, 05, 25, 09, 00, 00);
-                //DateTime oTimeSlot = new DateTime();
-                //if (oCurrentDate.Minute > 30)
-                //    oTimeSlot = new DateTime(oCurrentDate.Year, oCurrentDate.Month, oCurrentDate.Day, oCurrentDate.Hour, 30, 0);
-                //else
-                //    oTimeSlot = new DateTime(oCurrentDate.Year, oCurrentDate.Month, oCurrentDate.Day, oCurrentDate.Hour, 0, 0);
-
-
-                //for (Int32 iCounter = 1; iCounter <= 32; iCounter++)
-                //{
-
-                //    Console.WriteLine("Day: " + oTimeSlot.DayOfWeek.ToString() + ", " + oTimeSlot.ToString("m") + " Time: " + oTimeSlot.ToString("t") + " - " + oTimeSlot.AddMinutes(30).ToString("t"));
-
-                //    oTimeSlot = oTimeSlot.AddMinutes(15);
-                //    Response.Write("Time: " + oTimeSlot.ToString("t") + " - " + oTimeSlot.AddMinutes(30).ToString("t"));
-                //}
-
-                //DateTime startSlot = DateTime.Now.Date.AddHours(8); // Starts at 8:00AM
-                //while (startSlot.Hour < 17)
-                //{
-                //    // Construct time slot class
-                //    startSlot = startSlot.AddMinutes(15);
-                //}
-                //DateTime oCurrentDate1 = new DateTime(2014, 05, 25, 09, 00, 00);
-                //DateTime oCurrentDate2 = new DateTime(2014, 05, 25, 05, 00, 00);
-                //List<DateTime> list = new List<DateTime>();
-                //list.Add(oCurrentDate1);
-                //list.Add(oCurrentDate2);
-
-
-                //appointment.MergeIntoLargerSlots(list, 30);
-
-
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
         }
-
-
-
-
-
-
-
 
 
         //protected void Unnamed1_Click(object sender, EventArgs e)

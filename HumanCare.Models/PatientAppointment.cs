@@ -113,7 +113,7 @@ namespace HumanCare.BLL
             }
             catch (Exception ex)
             {
-                return patientID;
+                return ex.Message;
             }
         }
 

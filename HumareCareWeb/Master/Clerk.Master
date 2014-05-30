@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
+        <asp:LinkButton ID="LinkButton1" CssClass="topbar" runat="server" OnClick="logOut_event">Logout</asp:LinkButton>
         </asp:ContentPlaceHolder>
     </div>
     </form>

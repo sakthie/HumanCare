@@ -13,49 +13,16 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<%--<div class="page">
-        <div class="header">
-            <div class="title">
-                <h1>
-                    My ASP.NET Application
-                </h1>
-            </div>
-            <div class="loginDisplay">
-                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
-                    <AnonymousTemplate>
-                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
-                    </AnonymousTemplate>
-                    <LoggedInTemplate>
-                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
-                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
-                    </LoggedInTemplate>
-                </asp:LoginView>
-            </div>
-            <div class="clear hideSkiplink">
-                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
-                    <Items>
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
-                    </Items>
-                </asp:Menu>
-            </div>
-        </div>
-        <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
-        </div>
-        <div class="clear">
-        </div>
-    </div>--%>
 <body>
     <form id="Form1" runat="server">
     <header>
     <table class="topbar" background="../Images/topbar.png">
         <tr> 
             <td>
-                <a class="topbar" href="HomePage.aspx">Home</a>
-                <a class="topbar" href="Billing.aspx">Billing </a>
-                <a class="topbar" href="PatientRoom.aspx">Patient Room</a>
-                <a class="topbar" href="Reports.aspx">Reports</a>
+                <a class="topbar" href="/Manager/Billing.aspx">Billing </a>
+                <a class="topbar" href="/Manager/PatientRoom.aspx">Patient Room</a>
+                <a class="topbar" href="/Manager/Reports.aspx">Reports</a>
+                <asp:LinkButton ID="LinkButton1" CssClass="topbar" runat="server" OnClick="logOut_event">Logout</asp:LinkButton>
             </td>
         </tr>
     </table>
@@ -73,23 +40,12 @@
             <em>HTML</em> caption. Link to <a href="http://www.google.com/">Google</a>.
         </div>
     </div>
-           <%-- <div id="image" class="image">
-                <img src="Images/hospital-management-erp.jpg" alt="Smiley face" height="150" width="700"><br />
-            </div>--%>
-            <%--<div id="buttons">
-                <a class="button" href="/">Home</a> <a class="button" href="PatientManagement.aspx">
-                    Patient Management</a> <a class="button" href="PatientAppointment.aspx">Patient Appointment</a>
-                <a class="button" href="PatientRoom.aspx">Patient Room Booking</a> <a class="button"
-                    href="DoctorsArena.aspx">Doctors arena</a> <a class="button" href="Billing.aspx">Hospital
-                        billing</a>
-            </div>--%>
         </div>
        <%-- 
         <div id="footer" class="footer">
             Humancare.com © 2014. All Rights Reserved. <a href="http://google.com">Privacy Policy</a>
         </div>--%>
     </div>
-</body>
 <div class="main">
     <asp:contentplaceholder id="MainContent" runat="server" />
 </div>
@@ -97,5 +53,6 @@
 </div>
 <div class="footer">
 </div>
-</form> </body>
+</body>
+</form> 
 </html>

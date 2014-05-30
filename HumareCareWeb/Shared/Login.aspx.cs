@@ -18,26 +18,10 @@ namespace HumareCareWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                RedirectFromLoginPage(User.Identity.Name);
-            }
+            Utility.ValidateUser(User);
+
+            Utility.RedirectFromLoginPage(User.Identity.Name,Response);
          
-        }
-
-
-        /* To redirect to the home page based on the Role */
-
-        private void RedirectFromLoginPage(string username)
-        {
-            LoginRedirectByRoleSection roleRedirectSection = (LoginRedirectByRoleSection)ConfigurationManager.GetSection("loginRedirectByRole");
-            foreach (RoleRedirect roleRedirect in roleRedirectSection.RoleRedirects)
-            {
-                if (Roles.IsUserInRole(username, roleRedirect.Role))
-                {
-                    Response.Redirect(roleRedirect.Url);
-                }
-            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -47,7 +31,7 @@ namespace HumareCareWeb
             if(Membership.ValidateUser(Username.Text, Password.Text))
             {
                 FormsAuthentication.SetAuthCookie(Username.Text, true);
-                RedirectFromLoginPage(Username.Text);
+                Utility.RedirectFromLoginPage(Username.Text, Response);
             }
 
 

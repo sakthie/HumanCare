@@ -10,6 +10,7 @@
     <table align="center">
         <tr>
             <td colspan="4">
+            
                 <asp:radiobutton runat="server" id="rdbNewReg" text="New Registration" 
                     AutoPostBack="True" Checked="True" oncheckedchanged="rdbNewReg_CheckedChanged"></asp:radiobutton>
                 <asp:radiobutton runat="server" id="rdbOldReg" text="Old Registration" 
