@@ -25,3 +25,11 @@ D:\Projects\ISS\SakthiHumanCare\HumanCare\HumanCare.Models\bin\Debug\Humancare.D
 D:\Projects\ISS\SakthiHumanCare\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.csprojResolveAssemblyReference.cache
 D:\Projects\ISS\SakthiHumanCare\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.dll
 D:\Projects\ISS\SakthiHumanCare\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.pdb
+D:\HumanCare\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll.config
+D:\HumanCare\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll
+D:\HumanCare\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.pdb
+D:\HumanCare\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.dll
+D:\HumanCare\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.pdb
+D:\HumanCare\HumanCare\HumanCare.Models\obj\Debug\ResolveAssemblyReference.cache
+D:\HumanCare\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.dll
+D:\HumanCare\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.pdb

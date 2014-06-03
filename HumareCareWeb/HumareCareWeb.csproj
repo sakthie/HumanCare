@@ -104,23 +104,25 @@
     <Content Include="Doctor\FindDoctor.aspx" />
     <Content Include="Shared\ContactUs.aspx" />
     <Content Include="Shared\MainPage.aspx" />
-    <Content Include="Shared\Register.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager\Billing.aspx.cs">
       <DependentUpon>Billing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Manager\Billing.aspx.designer.cs">
       <DependentUpon>Billing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\PatientRoom.aspx.cs">
       <DependentUpon>PatientRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Manager\PatientRoom.aspx.designer.cs">
       <DependentUpon>PatientRoom.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\Reports.aspx.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Manager\Reports.aspx.designer.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
@@ -257,13 +259,6 @@
     <Compile Include="Shared\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Shared\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
@@ -296,6 +291,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master\Clerk.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dbBackup\HumanCare3-6-14-MembershipTablesIncluded.bak" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

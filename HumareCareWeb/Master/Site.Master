@@ -18,7 +18,7 @@
         <tr> 
             <td>
                 <a class="topbar" href="/Shared/HomePage.aspx">Home</a>
-                <a class="topbar" href="/Shared/Register.aspx">Register</a>
+             <%--   <a class="topbar" href="/Shared/Register.aspx">Register</a>--%>
                 <a class="topbar" href="/Shared/MainPage.aspx">Main Page</a>
                 <a class="topbar" href="/Shared/ContactUs.aspx">Contact Us</a>
                 <a class="topbar" href="/Shared/Login.aspx">User Login</a>

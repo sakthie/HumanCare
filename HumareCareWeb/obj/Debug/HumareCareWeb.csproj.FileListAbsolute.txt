@@ -27,3 +27,12 @@ D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\bin\HumanCare.BLL.pdb
 D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.csprojResolveAssemblyReference.cache
 D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.dll
 D:\Projects\ISS\SakthiHumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.pdb
+D:\HumanCare\HumanCare\HumareCareWeb\bin\HumareCareWeb.dll
+D:\HumanCare\HumanCare\HumareCareWeb\bin\HumareCareWeb.pdb
+D:\HumanCare\HumanCare\HumareCareWeb\bin\HumanCare.BLL.dll
+D:\HumanCare\HumanCare\HumareCareWeb\bin\Humancare.Data.dll
+D:\HumanCare\HumanCare\HumareCareWeb\bin\Humancare.Data.pdb
+D:\HumanCare\HumanCare\HumareCareWeb\bin\HumanCare.BLL.pdb
+D:\HumanCare\HumanCare\HumareCareWeb\obj\Debug\ResolveAssemblyReference.cache
+D:\HumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.dll
+D:\HumanCare\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.pdb

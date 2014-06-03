@@ -18,6 +18,7 @@ namespace HumareCareWeb.Master
         protected void logOut_event(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
     }
 }

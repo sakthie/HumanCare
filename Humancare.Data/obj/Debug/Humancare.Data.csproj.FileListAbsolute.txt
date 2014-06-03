@@ -8,3 +8,9 @@ D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Dat
 D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.pdb
 D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.dll
 D:\Projects\ISS\SakthiHumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.pdb
+D:\HumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll.config
+D:\HumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll
+D:\HumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.pdb
+D:\HumanCare\HumanCare\Humancare.Data\obj\Debug\ResolveAssemblyReference.cache
+D:\HumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.dll
+D:\HumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.pdb
