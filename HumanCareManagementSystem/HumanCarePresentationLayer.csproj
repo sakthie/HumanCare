@@ -163,6 +163,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Clerk\ClerkAreaRegistration.cs" />
+    <Compile Include="Areas\Doctor\Controllers\SpecializationController.cs" />
     <Compile Include="Areas\Doctor\DoctorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -308,7 +309,6 @@
     <Folder Include="Areas\Clerk\Controllers\" />
     <Folder Include="Areas\Clerk\Models\" />
     <Folder Include="Areas\Clerk\Views\Shared\" />
-    <Folder Include="Areas\Doctor\Controllers\" />
     <Folder Include="Areas\Doctor\Models\" />
     <Folder Include="Areas\Doctor\Views\Shared\" />
   </ItemGroup>
@@ -361,6 +361,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Clerk\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Doctor\Views\Specialization\Create.cshtml" />
+    <Content Include="Areas\Doctor\Views\Specialization\Delete.cshtml" />
+    <Content Include="Areas\Doctor\Views\Specialization\Edit.cshtml" />
+    <Content Include="Areas\Doctor\Views\Specialization\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

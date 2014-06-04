@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="doctor\SpecializationBLL.cs" />
     <Compile Include="PatientAppointment.cs" />
     <Compile Include="PatientRepository.cs" />
     <Compile Include="PatientRoomRepository.cs" />

@@ -4,96 +4,51 @@ using System.Linq;
 using System.Text;
 using Humancare.Data;
 using System.Globalization;
-using System.Security.Permissions;
-
+using Humancare.Data.ViewModel;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace HumanCare.BLL
 {
-    //[PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
-    //[PrincipalPermission(SecurityAction.Demand, Role = "Patient")]
-   
     public class PatientAppointment
     {
-        Patient_Appointment appointobj = new Patient_Appointment();
-        
-        public string createpatientappointment(string patientid, String appntid, string dateid, string doctorid, DateTime start, DateTime end, string prescid)
+        Patient_Appointment appointObj = new Patient_Appointment();
+        String appntDateFormat = "MMM d yyyy";
+
+        public int createpatientappointment(int patientId, int appntId, int dateId, int doctorId, int prescId, DateTime appDate)
         {
-            using (HealthCareNewEntities db = new HealthCareNewEntities())
+            using (HealthCareNewEntities entities = new HealthCareNewEntities())
             {
                 try
                 {
-                    var patientIncrementid = from cs in db.Patients select cs.patientId;
-                    var max_Id = (from a in db.Patients select a.patientId.Substring(3, 5)).Max();
-                    patientid = "PAT" + max_Id.ToString();
-                    appntid = ReturnAppointmentIncrementID();
-
-                    var appointmentDateID = (from c in db.Doctor_AppntSlot where c.doctorId == doctorid select c.dateId).SingleOrDefault();
-                    appointobj.patientId = patientid;
-                    appointobj.appntId = appntid;
-                    appointobj.dateId = appointmentDateID;
-                    appointobj.doctorId = doctorid;
-                    appointobj.startTime = start;
-                    appointobj.endTime = end;
-                    appointobj.prescriptionId = prescid;
-                    appointobj.description = "patient";
-                    appointobj.upcomingPast = "Y";
-                    db.Patient_Appointment.AddObject(appointobj);
-                    db.SaveChanges();
-                    return patientid;
+                    appntId = (from a in entities.Patients select a.patientId).Max() + 1;
+                    var appointmentDateID = (from c in entities.Doctor_AppntSlot where c.doctorId == doctorId && c.appntDate == appDate select c.dateId).FirstOrDefault();
+                    appointObj.patientId = patientId;
+                    appointObj.appntId = appntId;
+                    appointObj.dateId = appointmentDateID;
+                    appointObj.doctorId = doctorId;
+                    appointObj.prescriptionId = prescId;
+                    appointObj.description = "patient";
+                    appointObj.upcomingPast = "Y";
+                    entities.Patient_Appointment.AddObject(appointObj);
+                    entities.SaveChanges();
+                    return patientId;
                 }
                 catch (Exception ex)
                 {
-                    return patientid;
+                    throw ex;
                 }
             }
 
         }
 
-        public string ReturnPatientIncrementID()
-        {
-            using (HealthCareNewEntities db = new HealthCareNewEntities())
-            {
-                var patientIncrementid = from cs in db.Patients select cs.patientId;
-                if (patientIncrementid.Count().Equals(0))
-                {
-                    appointobj.patientId = "PAT" + 100;
-                }
-                else
-                {
-                    var max_Id = (from a in db.Patients select a.patientId.Substring(3, 5)).Max();
-                    appointobj.patientId = "PAT" + (Convert.ToInt32(max_Id) + 1).ToString();
-                }
-            }
-            return appointobj.patientId;
-        }
-
-        public string ReturnAppointmentIncrementID()
-        {
-            using (HealthCareNewEntities db = new HealthCareNewEntities())
-            {
-                var AppointmentIncrementid = from cs in db.Patient_Appointment select cs.appntId;
-                if (AppointmentIncrementid.Count().Equals(0))
-                {
-                    appointobj.appntId = "APP" + 100;
-                }
-                else
-                {
-                    var max_Id = (from a in db.Patient_Appointment select a.appntId.Substring(3, 5)).Max();
-                    appointobj.appntId = "APP" + (Convert.ToInt32(max_Id) + 1).ToString();
-                }
-            }
-            return appointobj.appntId;
-        }
-
-        public string CreatePatient(string patientID, string name, int phone, string email, string gender, DateTime DOB, string nationality, string icNUM, string street, string area, string country, int postalCode)
+        public int CreatePatient(string name, int phone, string email, string gender, DateTime DOB, string nationality, string icNUM, string street, string area, string country, int postalCode)
         {
             try
             {
-                using (HealthCareNewEntities db = new HealthCareNewEntities())
+                using (HealthCareNewEntities entities = new HealthCareNewEntities())
                 {
-                    patientID = ReturnPatientIncrementID();
                     Patient pat = new Patient();
-                    pat.patientId = patientID;
                     pat.name = name;
                     pat.phone = phone;
                     pat.email = email;
@@ -105,126 +60,123 @@ namespace HumanCare.BLL
                     pat.area = area;
                     pat.country = country;
                     pat.postalCode = postalCode;
-                    db.AddToPatients(pat);
-                    db.SaveChanges();
-                    return patientID;
+                    entities.AddToPatients(pat);
+                    entities.SaveChanges();
+                    return 1;
                 }
 
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                throw ex;
             }
         }
 
-        public string updateData(string patientid, String appntid, string dateid, string doctoid, string prescid, DateTime start, DateTime end)
+        public int updateData(int patientId, int appntId, int dateId, int doctorId, int prescId, DateTime start, DateTime end)
         {
-            string status = "";
+            int status = 0;
             try
             {
-                using (HealthCareNewEntities db = new HealthCareNewEntities())
+                using (HealthCareNewEntities entities = new HealthCareNewEntities())
                 {
-                    var appointobj = (from r in db.Patient_Appointment.Where(w => w.patientId.Equals(patientid)) select r).FirstOrDefault();
-                    appointobj.appntId = appntid;
-                    appointobj.dateId = dateid;
-                    appointobj.doctorId = doctoid;
-                    appointobj.patientId = patientid;
-                    appointobj.prescriptionId = prescid;
-                    appointobj.startTime = start;
-                    appointobj.endTime = end;
-                    db.Patient_Appointment.AddObject(appointobj);
-                    db.SaveChanges();
-                    DoctorslotupdateData(dateid, doctoid);
-                    status = appointobj.patientId;
+                    var appointObj = (from r in entities.Patient_Appointment.Where(w => w.patientId.Equals(patientId)) select r).FirstOrDefault();
+                    appointObj.appntId = appntId;
+                    appointObj.dateId = dateId;
+                    appointObj.doctorId = doctorId;
+                    appointObj.patientId = patientId;
+                    appointObj.prescriptionId = prescId;
+                    entities.Patient_Appointment.AddObject(appointObj);
+                    entities.SaveChanges();
+                    DoctorslotupdateData(dateId, doctorId);
+                    status = appointObj.patientId;
                 }
                 return status;
             }
-            catch
+            catch (Exception ex)
             {
-                return status;
+                throw ex;
             }
         }
 
-        public string DoctorslotupdateData(string dateid, string _doctorid)
+        public int DoctorslotupdateData(int dateId, int doctorId)
         {
-            string status = "";
+            int status = 0;
             try
             {
 
-                using (HealthCareNewEntities db = new HealthCareNewEntities())
+                using (HealthCareNewEntities entities = new HealthCareNewEntities())
                 {
-                    var appointobj = (from r in db.Doctor_AppntSlot.Where(w => w.doctorId == _doctorid) select r).FirstOrDefault();
-                    appointobj.slotAllocated = appointobj.slotAllocated + 1;
-                    appointobj.slotAvaliable = appointobj.slotAvaliable - 1;
-                    db.SaveChanges();
+                    var appointObj = (from r in entities.Doctor_AppntSlot.Where(w => w.doctorId == doctorId) select r).FirstOrDefault();
+                    appointObj.slotAllocated = appointObj.slotAllocated + 1;
+                    appointObj.slotAvaliable = appointObj.slotAvaliable - 1;
+                    entities.SaveChanges();
 
-                    status = appointobj.doctorId;
+                    status = appointObj.doctorId;
                 }
                 return status;
             }
-            catch
+            catch (Exception ex)
             {
-                return status;
+                throw ex;
             }
         }
 
 
 
-        public int deleteData(string patientid)
+        public int deleteData(string patientId)
         {
             try
             {
                 int status = 0;
-                using (HealthCareNewEntities db = new HealthCareNewEntities())
+                using (HealthCareNewEntities entities = new HealthCareNewEntities())
                 {
-                    var obj = (from r in db.Patient_Appointment.Where(w => w.patientId.Equals(patientid)) select r).FirstOrDefault();
-                    db.Patient_Appointment.DeleteObject(obj);
-                    db.SaveChanges();
+                    var patObj = (from r in entities.Patient_Appointment.Where(w => w.patientId.Equals(patientId)) select r).FirstOrDefault();
+                    entities.Patient_Appointment.DeleteObject(patObj);
+                    entities.SaveChanges();
 
                 }
                 return status;
             }
-            catch
+            catch (Exception ex)
             {
-                return -1;
+                throw ex;
             }
         }
 
 
 
-        public List<Patient_Appointment> SelectData(int patientid)
+        public List<Patient_Appointment> SelectData(int patientId)
         {
             try
             {
-                using (HealthCareNewEntities db = new HealthCareNewEntities())
+                using (HealthCareNewEntities entities = new HealthCareNewEntities())
                 {
-                    List<Patient_Appointment> obj = (from r in db.Patient_Appointment.Where(w => w.patientId.Equals(patientid)) select r).ToList();
-                    return obj;
+                    List<Patient_Appointment> patAppointObj = (from r in entities.Patient_Appointment.Where(w => w.patientId.Equals(patientId)) select r).ToList();
+                    return patAppointObj;
 
                 }
 
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
         public List<Patient_Appointment> SelectAllData()
         {
             try
             {
-                using (HealthCareNewEntities context = new HealthCareNewEntities())
+                using (HealthCareNewEntities Entities = new HealthCareNewEntities())
                 {
-                    List<Patient_Appointment> Appointmentobj = (from r in context.Patient_Appointment select r).ToList();
-                    //var obj = Appointmentobj.Select((j, l) => new { j.patientId, j.description, index = l + 1  }).ToList();
-                    return Appointmentobj;
+                    List<Patient_Appointment> appointmentObj = (from r in Entities.Patient_Appointment select r).ToList();
+                    return appointmentObj;
 
                 }
 
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
 
@@ -233,17 +185,17 @@ namespace HumanCare.BLL
         {
             try
             {
-                using (HealthCareNewEntities context = new HealthCareNewEntities())
+                using (HealthCareNewEntities Entities = new HealthCareNewEntities())
                 {
-                    List<Doctor> Doctorobj = (from r in context.Doctors select r).ToList();
-                    return Doctorobj;
+                    List<Doctor> doctorObj = (from r in Entities.Doctors select r).ToList();
+                    return doctorObj;
 
                 }
 
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
 
@@ -252,21 +204,98 @@ namespace HumanCare.BLL
         {
             try
             {
+                using (HealthCareNewEntities Entities = new HealthCareNewEntities())
+                {
+                    List<Specialization> specializeObj = (from r in Entities.Specializations select r).ToList();
+                    return specializeObj;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Doctor> SelectDoctorBasedSpec(int specId)
+        {
+            try
+            {
                 using (HealthCareNewEntities context = new HealthCareNewEntities())
                 {
-                    List<Specialization> Specializeobj = (from r in context.Specializations select r).ToList();
-                    //var obj = Appointmentobj.Select((j, l) => new { j.patientId, j.description, index = l + 1  }).ToList();
-                    return Specializeobj;
+                    List<Specialization> spec = (from sa in context.Specializations where sa.id == specId select sa).ToList();
+                    List<Doctor> docs = spec[0].Doctors.ToList();
+
+                    return docs;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Slot> SelectAppointmentSlot(String dateString)
+        {
+            try
+            {
+                String[] dateFormat = { appntDateFormat };
+                DateTime dateAppnt = DateTime.ParseExact(dateString, dateFormat, new CultureInfo("en-US"), DateTimeStyles.None);
+                using (HealthCareNewEntities context = new HealthCareNewEntities())
+                {
+                    List<Slot> onj = (from s in context.Slots
+                                      where
+                                      !
+                                      (from p in context.Patient_Appointment
+                                       where
+                                           (from d in context.Doctor_AppntSlot
+                                            where (d.appntDate.Equals(dateAppnt))
+                                            select
+                                                d.dateId
+                                           ).Contains(p.dateId)
+                                       select p.slotNo).Contains(s.slotNo)
+                                      select s).ToList();
+                    for (int itr = 0; itr < onj.Count; itr++)
+                    {
+                        Slot s = onj[itr];
+                        s.startTime = s.startTime + " - " + s.endTime;
+                        onj[itr] = s;
+                    }
+                    return onj;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<String> returnDatesBasedDoctor(int docId)
+        {
+            try
+            {
+                using (HealthCareNewEntities context = new HealthCareNewEntities())
+                {
+                    List<DateTime> obj = (from Doctor_AppntSlot in context.Doctor_AppntSlot
+                                          where
+                                            Doctor_AppntSlot.doctorId == docId
+                                          select Doctor_AppntSlot.appntDate).ToList();
+                    List<String> dateObj = new List<String>();
+                    for (int itr = 0; itr < obj.Count; itr++)
+                    {
+                        dateObj.Add(obj[itr].ToString(appntDateFormat));
+                    }
+                    return dateObj;
 
                 }
 
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-
 
         public List<Nationality> SelectAllNationalityData()
         {
@@ -282,34 +311,43 @@ namespace HumanCare.BLL
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
         static IEnumerable<DateTime> AllDatesBetween(DateTime start, DateTime end)
         {
+
             for (var day = start.Date; day <= end; day = day.AddDays(1))
                 yield return day;
+
         }
 
         public List<string> returnPreferredDates()
         {
-            string dateInString = DateTime.Now.ToString();
+            try
+            {
+                string dateInString = DateTime.Now.ToString();
 
-            DateTime startDate = DateTime.Parse(dateInString);
-            DateTime expiryDate = startDate.AddDays(30);
-            string monthName = startDate.ToString("MMM", CultureInfo.InvariantCulture);
-            var calculatedDates =
-    new List<string>
-    (
-        AllDatesBetween
+                DateTime startDate = DateTime.Parse(dateInString);
+                DateTime expiryDate = startDate.AddDays(30);
+                string monthName = startDate.ToString("MMM", CultureInfo.InvariantCulture);
+                var calculatedDates =
+        new List<string>
         (
-            startDate,
-            expiryDate
-        ).Select(d => d.ToString("MMM d yyyy"))
-    );
+            AllDatesBetween
+            (
+                startDate,
+                expiryDate
+            ).Select(d => d.ToString(appntDateFormat))
+        );
 
 
-            return calculatedDates;
+                return calculatedDates;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -317,9 +355,9 @@ namespace HumanCare.BLL
         {
             try
             {
-                using (HealthCareNewEntities context = new HealthCareNewEntities())
+                using (HealthCareNewEntities Entities = new HealthCareNewEntities())
                 {
-                    List<Doctor> doctorObj = (from r in context.Doctors select r).ToList();
+                    List<Doctor> doctorObj = (from r in Entities.Doctors select r).ToList();
                     return doctorObj;
 
                 }
@@ -327,62 +365,128 @@ namespace HumanCare.BLL
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
+            }
+        }
+        public List<Patient> SelectPatientDetails(string icNum, string email, int phone)
+        {
+            try
+            {
+                using (HealthCareNewEntities Entities = new HealthCareNewEntities())
+                {
+
+                    List<Patient> patientObj;
+                    if (icNum != string.Empty)
+                    {
+                        patientObj = (from r in Entities.Patients.Where(w => w.icNum.Equals(icNum)) select r).ToList();
+                    }
+                    else if (email != string.Empty)
+                    {
+                        patientObj = (from r in Entities.Patients.Where(w => w.email.Equals(email)) select r).ToList();
+                    }
+                    else
+                    {
+                        patientObj = (from r in Entities.Patients.Where(w => w.phone.Equals(phone)) select r).ToList();
+                    }
+                    return patientObj;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
+        public IEnumerable<Humancare.Data.ViewModel.PatientAppointment.patientapp> SelectPatientAppointmentforDoctor()
+        {
+            try
+            {
+                using (HealthCareNewEntities Entities = new HealthCareNewEntities())
+                {
 
-        //public List<Doctor_AppntSlot> SelectPreferredTimeSlot()
-        //{
-        //    try
-        //    {
-        //        using (HealthCareNewEntities context = new HealthCareNewEntities())
-        //        {
-        //            List<Doctor_AppntSlot> timeSlotObj = (from r in context.Doctor_AppntSlot select new Doctor_AppntSlot { workStartTime = r.workStartTime, workEndTime = r.workEndTime }).ToList();
+                    var patAppointment = (from b in Entities.Patient_Appointment
+                                          from c in Entities.Doctor_AppntSlot
+                                          from d in Entities.Slots
+                                          from e in Entities.Doctors
+                                          where
+                                              b.doctorId == c.doctorId &&
+                                              b.slotNo == d.slotNo &&
+                                              b.doctorId == e.id &&
+                                              b.dateId == c.dateId
+                                          select new Humancare.Data.ViewModel.PatientAppointment.patientapp
+                                          {
+                                              name = b.Patient.name,
+                                              gender = b.Patient.gender,
+                                              appntId = b.appntId,
+                                              appntDate = c.appntDate,
+                                              startTime = d.startTime,
+                                              endTime = d.endTime
+                                          }).ToList();
 
-        //            return timeSlotObj;
+                    return patAppointment;
 
-        //        }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return null;
-        //    }
-        //}
+        public string SendEmailtoPatient(string patientName, string icNUm, DateTime DOB, string gender, int contactNumber, string emailID, string nationality, string speciality, string doctorName, string AppDate, string slot)
+        {
+            try
+            {
+                using (HealthCareNewEntities Entities = new HealthCareNewEntities())
+                {
+                    var patientID = (from r in Entities.Patients.Where(w => w.icNum == icNUm) select r).FirstOrDefault();
+                    var appID = (from r in Entities.Patient_Appointment.Where(w => w.patientId == Convert.ToInt32(patientID)) select r).FirstOrDefault();
+                    speciality = "Ortho";
+                    slot = "08:00-08:30";
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("Humancaremail@gmail.com");
+                    mail.To.Add(emailID);
+                    mail.Subject = "Humancare Appointment Details";
+                    mail.IsBodyHtml = true;
+                    string MailBody = "";
+                    MailBody = MailBody + "<body>";
+                    MailBody = MailBody + "<table style='width: 100%;font-size:10px; font-family: Arial,Helvetica,sans-serif'>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Appointment Request</B></td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Hi " + patientName + "</B></td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'>This is to confirm receipt of your message. Our customer care executive will get back to you with the information you requested. Thank You.</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>PATIENT ID :</B> " + patientID + " #26797</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>APPOINTMENT ID :</B> " + appID + " #26797</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>IC No :</B>" + icNUm + " </td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Date of Birth :</B> " + DOB + "</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Gender :</B> " + gender + "</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Phone/Mobile :</B> " + contactNumber + "</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Email :</B> " + emailID + " </td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Nationality :</B> " + nationality + " </td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Speciality :</B> " + speciality + " </td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Consulting Doctor :</B> " + doctorName + "</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Preferred Date :</B> " + AppDate + "</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'><B>Preferred Time Slot :</B> " + slot + " </td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'>Regards,</td></tr>";
+                    MailBody = MailBody + "<tr><td style='width:100%;text-align:left'>Healthcare</td></tr>";
+                    MailBody = MailBody + "</table></body></html>";
+                    mail.Body = MailBody;
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("Humancaremail@gmail.com", "Human@123");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(mail);
+                    return "Success";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-        //public List<Doctor_AppntSlot> GetProducts()
-        //{
-        //    using (HealthCareNewEntities context = new HealthCareNewEntities())
-        //            {
-        //                return (from p in context.Doctor_AppntSlot
+        }
 
-        //                        select new Doctor_AppntSlot1 { workStartTime = p.workStartTime }).ToList();
-        //}
-        //}
-
-
-        //public List<DateTime> MergeIntoLargerSlots(List<DateTime> slots, int minutes)
-        //{
-        //    int count = minutes / 30;
-        //    List<DateTime> retVal = new List<DateTime>();
-        //    foreach (DateTime slot in slots)
-        //    {
-        //        DateTime end = slot.AddMinutes(minutes);
-        //        if (slots.Where(x => x >= slot && x < end).Count() == count)
-        //        {
-        //            retVal.Add(slot);
-        //        }
-        //    }
-        //    return retVal;
-        //}
     }
-
-    //public class DateTime
-    //{
-    //    public DateTime workStartTime { get; set; }
-    //    public DateTime workEndTime { get; set; }
-    //    // Other field you may need from the Product entity
-    //}
 
 }

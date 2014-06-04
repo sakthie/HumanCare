@@ -67,6 +67,15 @@ namespace HumareCareWeb {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        
+        /// <summary>
         /// drpDay control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace HumareCareWeb {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
+        /// requiredfieldvalidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredfieldvalidator2;
+        
+        /// <summary>
         /// lblNationality control.
         /// </summary>
         /// <remarks>
@@ -182,6 +200,24 @@ namespace HumareCareWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStreet;
+        
+        /// <summary>
+        /// regularexpressionvalidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regularexpressionvalidator2;
+        
+        /// <summary>
+        /// requiredfieldvalidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredfieldvalidator1;
         
         /// <summary>
         /// lblArea control.
@@ -256,6 +292,15 @@ namespace HumareCareWeb {
         protected global::System.Web.UI.WebControls.DropDownList drpSpeciality;
         
         /// <summary>
+        /// requiredfieldvalidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredfieldvalidator3;
+        
+        /// <summary>
         /// lblDoctor control.
         /// </summary>
         /// <remarks>
@@ -290,6 +335,15 @@ namespace HumareCareWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpPreferredDate;
+        
+        /// <summary>
+        /// requiredfieldvalidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredfieldvalidator4;
         
         /// <summary>
         /// lblTimeSlot control.

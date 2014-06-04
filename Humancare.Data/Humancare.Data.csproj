@@ -54,6 +54,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HumanCare.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\PatientAppointment.cs" />
     <Compile Include="ViewModel\PatientRoomVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
