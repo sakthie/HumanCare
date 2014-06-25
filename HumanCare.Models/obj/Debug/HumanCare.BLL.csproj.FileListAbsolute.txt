@@ -41,3 +41,11 @@ C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\H
 C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\HumanCare.Models\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.dll
 C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.pdb
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\obj\Debug\ResolveAssemblyReference.cache
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll.config
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.dll
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\bin\Debug\HumanCare.BLL.pdb
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.dll
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\bin\Debug\Humancare.Data.pdb
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.dll
+D:\HumanCareMilan\backbefore\HumanCare\HumanCare.Models\obj\Debug\HumanCare.BLL.pdb

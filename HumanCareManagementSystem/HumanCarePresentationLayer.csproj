@@ -167,9 +167,13 @@
     <Compile Include="Areas\Doctor\Controllers\DoctorRoomController.cs" />
     <Compile Include="Areas\Doctor\Controllers\SpecializationController.cs" />
     <Compile Include="Areas\Doctor\DoctorAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Controllers\BillController.cs" />
+    <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientRoomBookingController.cs" />
+    <Compile Include="Controllers\PrescriptionController.cs" />
+    <Compile Include="Controllers\TreatmentController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -311,19 +315,10 @@
     <Folder Include="Areas\Clerk\Models\" />
     <Folder Include="Areas\Clerk\Views\Shared\" />
     <Folder Include="Areas\Doctor\Models\" />
+    <Folder Include="Areas\Manager\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Humancare.Data\Humancare.Data.csproj">
-      <Project>{1577A75E-3D3C-4DF8-801F-40BCE3E3AFDC}</Project>
-      <Name>Humancare.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HumanCare.Models\HumanCare.BLL.csproj">
-      <Project>{2D94FB4A-2AAE-4C3A-A769-139561783F2C}</Project>
-      <Name>HumanCare.BLL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Patient\Create.cshtml" />
@@ -396,6 +391,42 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manager\Views\Bill\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Bill\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Bill\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Bill\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\ManagerNavigationPartial.cshtml" />
+    <Content Include="Areas\Manager\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Humancare.Data\Humancare.Data.csproj">
+      <Project>{1577A75E-3D3C-4DF8-801F-40BCE3E3AFDC}</Project>
+      <Name>Humancare.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HumanCare.Models\HumanCare.BLL.csproj">
+      <Project>{2D94FB4A-2AAE-4C3A-A769-139561783F2C}</Project>
+      <Name>HumanCare.BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Treatment\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Treatment\AddTreatment.cshtml" />
+    <Content Include="Views\Treatment\AddTreatmentView.cshtml" />
+    <Content Include="Views\Treatment\EditTreatment.cshtml" />
+    <Content Include="Views\Treatment\EditTreatmentView.cshtml" />
+    <Content Include="Views\Treatment\ListTreatment.cshtml" />
+    <Content Include="Views\Treatment\View1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prescription\AddPrescriptionView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prescription\AddPrescription.cshtml" />
+    <Content Include="Views\Prescription\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

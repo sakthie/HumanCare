@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Humancare.Data.Patient_Prescription>
+
+
+    <p>
+        @Html.ActionLink("Create New", "AddPrescriptionView")
+    </p>
+    <fieldset>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.patientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateIssued)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.doctorId)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.patientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateIssued)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.doctorId)
+            </td>
+        </tr>
+    }
+    
+    </table>
+    </fieldset>
+

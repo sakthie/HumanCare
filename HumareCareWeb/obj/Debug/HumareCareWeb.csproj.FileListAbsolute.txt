@@ -45,3 +45,12 @@ C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\H
 C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\HumareCareWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.dll
 C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.pdb
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\obj\Debug\ResolveAssemblyReference.cache
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\bin\HumareCareWeb.dll
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\bin\HumareCareWeb.pdb
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\bin\HumanCare.BLL.dll
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\bin\Humancare.Data.dll
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\bin\Humancare.Data.pdb
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\bin\HumanCare.BLL.pdb
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.dll
+D:\HumanCareMilan\backbefore\HumanCare\HumareCareWeb\obj\Debug\HumareCareWeb.pdb

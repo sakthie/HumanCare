@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using HumanCare.BLL;
 using System.Web.Security;
 using System.Globalization;
+using System.Transactions;
+using HumareCareWeb.loginBasedonRoles;
+using HumanCare.BLL.WebFormFacade;
 
 /**
  * Author - Sakthi.
@@ -17,23 +20,51 @@ namespace HumareCareWeb
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        PatientAppointment appointment = new PatientAppointment();
+        
+        IPatientRegister appointment = new Facade();
+        //PatientAppointment appointment = new PatientAppointment();
         Boolean oldRegTrue = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //HumareCareWeb.loginBasedonRoles.Utility.ValidateUser(User);
-
-
+            //if (!User.Identity.IsAuthenticated)
+            //    FormsAuthentication.RedirectToLoginPage();
+            getDOB();
             if (!IsPostBack)
             {
+                PatientRegisterationPanel.Visible = false;
+                rdbOldReg.Checked = true;
+                rdbNewReg.Checked = false;
+
                 GetSpecialist();
                 GetNationality();
                 //GetPrefferedDates();
                 GetAllDoctor();
+                //DOBCalendar.Visible = false;
             }
         }
 
+        protected void rdbOldReg_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbOldReg.Checked == true)
+            {
+                rdbNewReg.Checked = false;
+                PatientRegisterationPanel.Visible = false;
+                //rdbMale.Enabled = false;
+                //rdbFemale.Enabled = false;
+
+            }
+        }
+
+        protected void rdbNewReg_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbNewReg.Checked == true)
+            {
+                rdbOldReg.Checked = false;
+                PatientRegisterationPanel.Visible = true;
+                //rdbMale.Enabled = true;
+                //rdbFemale.Enabled = true;
+            }
+        }
         private void getdoctor()
         {
             //DropDownList1.DataTextField = "name";
@@ -67,80 +98,161 @@ namespace HumareCareWeb
         public void GetAllDoctor()
         {
             drpDoctor.DataTextField = "name";
-            drpDoctor.DataValueField = "id";
+            drpDoctor.DataValueField = "Id";
             drpDoctor.DataSource = appointment.SelectAllDoctor();
             drpDoctor.DataBind();
         }
 
-        protected void rdbOldReg_CheckedChanged(object sender, EventArgs e)
+        public void getDOB()
         {
-            if (rdbOldReg.Checked == true)
+            List<int> dateValues = new List<int>();
+            List<int> monthValues = new List<int>();
+            List<int> yearValues = new List<int>();
+            for (int i = 1; i <= 31; i++)
             {
-                rdbNewReg.Checked = false;
-                drpDay.Enabled = false;
-                drpMonth.Enabled = false;
-                drpYear.Enabled = false;
-                rdbMale.Enabled = false;
-                rdbFemale.Enabled = false;
-
+                dateValues.Add(i);
+                if (i <= 12)
+                    monthValues.Add(i);
             }
+            for (int i = 1950; i <= DateTime.Now.Year; i++)
+                yearValues.Add(i);
+            drpDay.DataSource = dateValues;
+            drpMonth.DataSource = monthValues;
+            drpYear.DataSource = yearValues;
+            drpDay.DataBind();
+            drpMonth.DataBind();
+            drpYear.DataBind();
         }
-
-        protected void rdbNewReg_CheckedChanged(object sender, EventArgs e)
+        protected void btnCheckIc_Click(object sender, EventArgs e)
         {
-            if (rdbNewReg.Checked == true)
+            string icNum = txtICNo.Text;
+            if (icNum != string.Empty)
             {
-                rdbOldReg.Checked = false;
-                drpDay.Enabled = true;
-                drpMonth.Enabled = true;
-                drpYear.Enabled = true;
-                rdbMale.Enabled = true;
-                rdbFemale.Enabled = true;
+                var patientlist = appointment.SelectPatientDetails(icNum, "", 0);
+                if (rdbNewReg.Checked == true)
+                {
+                    if (patientlist != null && patientlist.Count > 0)
+                    {
+                        Response.Write(@"<script language='javascript'>alert('Patient already registered with us.please select appointment details');</script>");
+                        rdbOldReg.Checked = true;
+                        rdbNewReg.Checked = false;
+                        rdbOldReg_CheckedChanged(sender, e);
+                    }
+                    else
+                    {
+                        Response.Write(@"<script language='javascript'>alert('Patient Not Registered.Please Enter Patient Details');</script>");
+                    }
+                }
+                else if (rdbOldReg.Checked == true)
+                {
+                    if (patientlist == null && patientlist.Count == 0)
+                    {
+                        Response.Write(@"<script language='javascript'>alert('Patient not registered with us.Please Register Patient');</script>");
+                        rdbOldReg.Checked = false;
+                        rdbNewReg.Checked = true;
+                        rdbNewReg_CheckedChanged(sender, e);
+                    }
+                    else
+                    {
+                        Response.Write(@"<script language='javascript'>alert('Patient Already Registered.Please Select Appointment Details');</script>");
+                    }
+                }
             }
+            else
+            {
+                Response.Write(@"<script language='javascript'>alert('Please enter the ICNum to fetch the Details of Patient');</script>");
+            }
+
         }
 
         protected void btnAppointment_Click(object sender, EventArgs e)
         {
-            var patientId = 0;
-            //int DoctorID = Convert.ToInt32(drpDoctor.SelectedValue);
-            int DoctorID = 1;
-            string name = txtName.Text;
-            int phone = Convert.ToInt32(txtContactNo.Text);
-            string email = txtEmail.Text;
-            string gender = "";
-            if (rdbMale.Checked == true)
-            {
-                gender = "M";
-            }
-            else
-            {
-                gender = "F";
-            }
-            string date = drpDay.SelectedItem.ToString() + drpMonth.SelectedItem.ToString() + drpYear.SelectedItem.ToString();
-            DateTime DOB = Convert.ToDateTime(date);
-            string nationality = drpNationality.SelectedItem.Text;
-            string icNum = txtICNo.Text;
-            string street = txtStreet.Text;
-            string area = txtArea.Text;
-            string country = txtCountry.Text;
+            int doctorID = Convert.ToInt32(drpDoctor.SelectedValue);
+            string appointDate = drpPreferredDate.SelectedItem.Text;
+            int patientId = 0;
+            int dateId = Convert.ToInt32(drpPreferredDate.SelectedValue.ToString());
+            int slotNo = Convert.ToInt32(drpTimeSlot.SelectedValue.ToString());
+            string slot = drpTimeSlot.SelectedItem.Text;
             string speciality = drpSpeciality.SelectedItem.Text;
             string doctorName = drpDoctor.SelectedItem.Text;
-            string appointDate = drpPreferredDate.SelectedItem.Text;
-            string format = "MMM d yyyy";
 
-            DateTime appDate = DateTime.ParseExact(appointDate, format, CultureInfo.InvariantCulture);
-            string slot = drpTimeSlot.SelectedItem.Text;
-            int postalCode = Convert.ToInt32(txtPostalCode.Text);
-            if (rdbOldReg.Checked != true && oldRegTrue == false)
+            string name = null;
+            int phone = 0;
+            string email = null;
+            string gender = "";
+            string date = null;
+            DateTime DOB = DateTime.Now;
+            string nationality = null;
+            string street = null;
+            string area = null;
+            string country = null;
+
+            int postalCode = 0;
+            
+            if (rdbNewReg.Checked == true)
             {
-                patientId = appointment.CreatePatient(name, phone, email, gender, DOB, nationality, icNum, street, area, country, postalCode);
+                name = txtName.Text;
+                phone = Convert.ToInt32(txtContactNo.Text);
+                email = txtEmail.Text;
+                gender = "";
+                if (rdbMale.Checked == true)
+                {
+                    gender = "M";
+                }
+                else
+                {
+                    gender = "F";
+                }
+
+                date = drpDay.SelectedItem.ToString() + "/" + drpMonth.SelectedItem.ToString() + "/" + drpYear.SelectedItem.ToString();
+                DOB = Convert.ToDateTime(date);
+                nationality = drpNationality.SelectedItem.ToString();
+                street = txtStreet.Text;
+                area = txtArea.Text;
+                country = txtCountry.Text;
+
+                postalCode = Convert.ToInt32(txtPostalCode.Text);
+            
             }
-            appointment.createpatientappointment(patientId, 1, 1, DoctorID, 1, appDate);
-            appointment.SendEmailtoPatient(name, icNum, DOB, gender, phone, email, nationality, speciality, doctorName, appointDate, slot);
+            string icNum = txtICNo.Text;
+            
+            
+            String formatPatientId = null;
+            
+            DateTime todayDate = DateTime.Now;
+            if (DOB > todayDate && rdbNewReg.Checked==true)
+            {
+                Response.Write(@"<script language='javascript'>alert('Please Select Valid DOB');</script>");
+            }
+            else 
+            {
+                using (TransactionScope ts = new TransactionScope())
+                {
+                    if (rdbNewReg.Checked == true)
+                    {
+                        formatPatientId = appointment.CreatePatient(name, phone, email, gender, DOB, nationality, icNum, street, area, country, postalCode);
+
+                    }
+                    else if (rdbNewReg.Checked == false)
+                    {
+                        patientId = appointment.returnPatientfromIC(icNum);
+                    }
+                    appointment.createpatientappointment(patientId, dateId, doctorID, slotNo);
+
+                    if (rdbNewReg.Checked == true)
+                    {
+                        appointment.SendEmailtoPatient(name, icNum, DOB, gender, phone, email, nationality, speciality, doctorName, appointDate, slot);
+                        Response.Write(@"<script language='javascript'>alert('Patient Registered And Patient ID is " + formatPatientId + " And Appointment Created Successfully');</script>");
+                    }
+                    else
+                    {
+                        Response.Write(@"<script language='javascript'>alert('Appointment Created Successfully');</script>");
+                    }
+                    clearfields();
+                }
+            }
         }
-
-
-        protected void rdbMale_CheckedChanged(object sender, EventArgs e)
+        protected void rdbMale_CheckedChanged1(object sender, EventArgs e)
         {
 
             if (rdbMale.Checked == true)
@@ -149,15 +261,38 @@ namespace HumareCareWeb
             }
         }
 
-        protected void rdbFemale_CheckedChanged(object sender, EventArgs e)
+        protected void rdbFemale_CheckedChanged1(object sender, EventArgs e)
         {
             if (rdbFemale.Checked == true)
             {
                 rdbMale.Checked = false;
             }
-
         }
 
+        public void clearfields()
+        {
+            txtName.Text= string.Empty;
+            txtICNo.Text = string.Empty;
+            txtContactNo.Text = string.Empty;
+            txtCountry.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtArea.Text = string.Empty;
+            txtPostalCode.Text = string.Empty;
+            txtStreet.Text = string.Empty;
+            drpNationality.SelectedIndex = 0;
+            drpTimeSlot.Items.Clear();
+            drpTimeSlot.Items.Insert(0, new ListItem("Select", "0"));
+            drpTimeSlot.DataBind();
+            drpPreferredDate.Items.Clear();
+            drpPreferredDate.Items.Insert(0, new ListItem("Select", "0"));
+            drpPreferredDate.DataBind();
+            drpPreferredDate.SelectedIndex = 0;
+            drpSpeciality.SelectedIndex = 0;
+            drpTimeSlot.SelectedIndex = 0;
+            drpDoctor.Items.Clear();
+            GetAllDoctor();
+        }
+        /*
         protected void txtICNo_TextChanged(object sender, EventArgs e)
         {
             if (txtICNo.Text != string.Empty)
@@ -198,39 +333,39 @@ namespace HumareCareWeb
                 Response.Write(@"<script language='javascript'>alert('Please enter the ICNum to fetch the Details of Patient');</script>");
             }
 
-        }
-
-
-        protected void drpPreferredDate_SelectedIndexChanged1(object sender, EventArgs e)
+        }*/
+        protected void drpPreferredDate_SelectedIndexChanged(object sender, EventArgs e)
         {
             drpTimeSlot.Items.Clear();
             drpTimeSlot.DataTextField = "startTime";
             drpTimeSlot.DataValueField = "slotNo";
-            drpTimeSlot.Items.Insert(0, new ListItem("Select", "Select"));
+            drpTimeSlot.Items.Insert(0, new ListItem("Select", "0"));
             drpTimeSlot.DataSource = appointment.SelectAppointmentSlot(drpPreferredDate.SelectedItem.ToString());
             drpTimeSlot.DataBind();
             drpTimeSlot.AppendDataBoundItems = true;
             drpTimeSlot.SelectedIndex = 0;
         }
 
-
-        protected void drpSpeciality_SelectedIndexChanged1(object sender, EventArgs e)
+        protected void drpSpeciality_SelectedIndexChanged(object sender, EventArgs e)
         {
             drpDoctor.Items.Clear();
-            drpDoctor.Items.Insert(0, new ListItem("Select", "Select"));
+            drpDoctor.Items.Insert(0, new ListItem("Select", "0"));
             drpDoctor.DataTextField = "name";
-            drpDoctor.DataValueField = "id";
+            drpDoctor.DataValueField = "Id";
             drpDoctor.DataSource = appointment.SelectDoctorBasedSpec(Convert.ToInt32(drpSpeciality.SelectedValue.ToString()));
             drpDoctor.DataBind();
             drpDoctor.AppendDataBoundItems = true;
             drpDoctor.SelectedIndex = 0;
         }
 
-        protected void drpDoctor_SelectedIndexChanged1(object sender, EventArgs e)
+        protected void drpDoctor_SelectedIndexChanged(object sender, EventArgs e)
         {
             drpPreferredDate.Items.Clear();
-            drpPreferredDate.Items.Insert(0, new ListItem("Select", "Select"));
-            drpPreferredDate.DataSource = appointment.returnDatesBasedDoctor(Convert.ToInt32(drpDoctor.SelectedIndex));
+            drpPreferredDate.Items.Insert(0, new ListItem("Select", "0"));
+            drpPreferredDate.DataTextField = "appntDate";
+            drpPreferredDate.DataTextFormatString = "{0:dd-MM-yyyy}";
+            drpPreferredDate.DataValueField = "dateId";
+            drpPreferredDate.DataSource = appointment.returnDatesBasedDoctor(Convert.ToInt32(drpDoctor.SelectedValue.ToString()));
             drpPreferredDate.DataBind();
             drpPreferredDate.AppendDataBoundItems = true;
             drpPreferredDate.SelectedIndex = 0;

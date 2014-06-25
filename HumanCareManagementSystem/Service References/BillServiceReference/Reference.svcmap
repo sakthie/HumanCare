@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="67a47333-2831-481c-86a9-a4576182fdcc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="Http://localhost:8888/BillService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BillService.xsd" MetadataType="Schema" ID="59db7b9e-e06c-4b71-95b3-19a5cc6c617b" SourceId="1" SourceUrl="http://localhost:8888/BillService?xsd=xsd1" />
+    <MetadataFile FileName="BillService.disco" MetadataType="Disco" ID="b83c954a-dcba-4928-8d8a-4baad58ec1af" SourceId="1" SourceUrl="http://localhost:8888/BillService?disco" />
+    <MetadataFile FileName="BillService1.xsd" MetadataType="Schema" ID="88782d12-9d20-45d6-94a5-05685d91c838" SourceId="1" SourceUrl="http://localhost:8888/BillService?xsd=xsd2" />
+    <MetadataFile FileName="BillService2.xsd" MetadataType="Schema" ID="685d3a1f-1345-4944-b998-7af78d5c7621" SourceId="1" SourceUrl="http://localhost:8888/BillService?xsd=xsd3" />
+    <MetadataFile FileName="BillService3.xsd" MetadataType="Schema" ID="e7485d8d-4cd8-4448-a94b-ebb3541ca2a7" SourceId="1" SourceUrl="http://localhost:8888/BillService?xsd=xsd0" />
+    <MetadataFile FileName="BillService.wsdl" MetadataType="Wsdl" ID="7e468ce2-db92-4964-b9a2-f5f19d20e0cd" SourceId="1" SourceUrl="http://localhost:8888/BillService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

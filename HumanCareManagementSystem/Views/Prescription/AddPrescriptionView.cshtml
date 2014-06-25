@@ -1,0 +1,44 @@
+﻿@model Humancare.Data.Patient_Prescription
+
+
+    @using (Html.BeginForm("AddPrescription","Prescription")) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>Patient_Prescription</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.patientId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.patientId)
+                @Html.ValidationMessageFor(model => model.patientId)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.dateIssued)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.dateIssued)
+                @Html.ValidationMessageFor(model => model.dateIssued)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.doctorId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.doctorId)
+                @Html.ValidationMessageFor(model => model.doctorId)
+            </div>
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</html>

@@ -51,10 +51,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoctorAssignRoom.cs" />
+    <Compile Include="ManagerBill.cs" />
     <Compile Include="PatientAppointment.cs" />
     <Compile Include="PatientRepository.cs" />
     <Compile Include="PatientRoomRepository.cs" />
+    <Compile Include="PrescriptionBs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreatmentBs.cs" />
+    <Compile Include="WebFormFacade\Facade.cs" />
+    <Compile Include="WebFormFacade\Patientinroommodel.cs" />
+    <Compile Include="WebFormFacade\Patientroomavailabilitymodel.cs" />
+    <Compile Include="WebFormFacade\Patientroombooking.cs" />
+    <Compile Include="WebFormFacade\RoomModificationBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

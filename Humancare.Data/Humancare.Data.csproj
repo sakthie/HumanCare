@@ -54,9 +54,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HumanCare.edmx</DependentUpon>
     </Compile>
+    <Compile Include="model\Bill.cs" />
     <Compile Include="model\Doctor.cs" />
     <Compile Include="model\DoctorRoom.cs" />
     <Compile Include="model\Specialization.cs" />
+    <Compile Include="repositories\Bill.cs" />
     <Compile Include="repositories\Doctor.cs" />
     <Compile Include="repositories\Specialization.cs" />
     <Compile Include="ViewModel\PatientAppointment.cs" />
