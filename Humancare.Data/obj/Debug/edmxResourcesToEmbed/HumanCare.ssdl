@@ -1,28 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="HealthCareNewModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="HealthCareNewModelStoreContainer">
+    <EntitySet Name="aspnet_Applications" EntityType="HealthCareNewModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Membership" EntityType="HealthCareNewModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Paths" EntityType="HealthCareNewModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="HealthCareNewModel.Store.aspnet_PersonalizationAllUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="HealthCareNewModel.Store.aspnet_PersonalizationPerUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Profile" EntityType="HealthCareNewModel.Store.aspnet_Profile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Roles" EntityType="HealthCareNewModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="HealthCareNewModel.Store.aspnet_SchemaVersions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Users" EntityType="HealthCareNewModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_UsersInRoles" EntityType="HealthCareNewModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="HealthCareNewModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Bill" EntityType="HealthCareNewModel.Store.Bill" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Doctor" EntityType="HealthCareNewModel.Store.Doctor" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Doctor_AppntSlot" EntityType="HealthCareNewModel.Store.Doctor_AppntSlot" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doctor_Room" EntityType="HealthCareNewModel.Store.Doctor_Room" store:Type="Tables" store:Schema="dbo" store:Name="Doctor_Room">
-      <DefiningQuery>SELECT 
-      [Doctor_Room].[doctorId] AS [doctorId], 
-      [Doctor_Room].[roomId] AS [roomId], 
-      [Doctor_Room].[startDateTime] AS [startDateTime], 
-      [Doctor_Room].[endDateTime] AS [endDateTime]
-      FROM [dbo].[Doctor_Room] AS [Doctor_Room]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Doctor_Specialization" EntityType="HealthCareNewModel.Store.Doctor_Specialization" store:Type="Tables" store:Schema="dbo" store:Name="Doctor_Specialization">
-      <DefiningQuery>SELECT 
-      [Doctor_Specialization].[doctorId] AS [doctorId], 
-      [Doctor_Specialization].[specId] AS [specId]
-      FROM [dbo].[Doctor_Specialization] AS [Doctor_Specialization]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Nationality" EntityType="HealthCareNewModel.Store.Nationality" store:Type="Tables" store:Schema="dbo" store:Name="Nationality">
-      <DefiningQuery>SELECT 
-      [Nationality].[Id] AS [Id], 
-      [Nationality].[Nationality] AS [Nationality]
-      FROM [dbo].[Nationality] AS [Nationality]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="Doctor_Room" EntityType="HealthCareNewModel.Store.Doctor_Room" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Doctor_Specialization" EntityType="HealthCareNewModel.Store.Doctor_Specialization" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Nationality" EntityType="HealthCareNewModel.Store.Nationality" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Patient" EntityType="HealthCareNewModel.Store.Patient" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Patient_Appointment" EntityType="HealthCareNewModel.Store.Patient_Appointment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Patient_Prescription" EntityType="HealthCareNewModel.Store.Patient_Prescription" store:Type="Tables" Schema="dbo" />
@@ -30,8 +25,54 @@
     <EntitySet Name="Patient_Treatment" EntityType="HealthCareNewModel.Store.Patient_Treatment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Prescription_Medicine" EntityType="HealthCareNewModel.Store.Prescription_Medicine" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Room" EntityType="HealthCareNewModel.Store.Room" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Room_Type" EntityType="HealthCareNewModel.Store.Room_Type" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Slots" EntityType="HealthCareNewModel.Store.Slots" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Specialization" EntityType="HealthCareNewModel.Store.Specialization" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Staff" EntityType="HealthCareNewModel.Store.Staff" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__aspnet_Me__Appli__11D4A34F" Association="HealthCareNewModel.Store.FK__aspnet_Me__Appli__11D4A34F">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Me__UserI__12C8C788" Association="HealthCareNewModel.Store.FK__aspnet_Me__UserI__12C8C788">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pa__Appli__4B0D20AB" Association="HealthCareNewModel.Store.FK__aspnet_Pa__Appli__4B0D20AB">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__52AE4273" Association="HealthCareNewModel.Store.FK__aspnet_Pe__PathI__52AE4273">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__58671BC9" Association="HealthCareNewModel.Store.FK__aspnet_Pe__PathI__58671BC9">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__UserI__595B4002" Association="HealthCareNewModel.Store.FK__aspnet_Pe__UserI__595B4002">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pr__UserI__28B808A7" Association="HealthCareNewModel.Store.FK__aspnet_Pr__UserI__28B808A7">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Ro__Appli__3429BB53" Association="HealthCareNewModel.Store.FK__aspnet_Ro__Appli__3429BB53">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__7DCDAAA2" Association="HealthCareNewModel.Store.FK__aspnet_Us__Appli__7DCDAAA2">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__RoleI__3AD6B8E2" Association="HealthCareNewModel.Store.FK__aspnet_Us__RoleI__3AD6B8E2">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__UserI__39E294A9" Association="HealthCareNewModel.Store.FK__aspnet_Us__UserI__39E294A9">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
     <AssociationSet Name="FK_Doctor_AppntSlot_Doctor" Association="HealthCareNewModel.Store.FK_Doctor_AppntSlot_Doctor">
       <End Role="Doctor" EntitySet="Doctor" />
       <End Role="Doctor_AppntSlot" EntitySet="Doctor_AppntSlot" />
@@ -48,6 +89,18 @@
       <End Role="Doctor" EntitySet="Doctor" />
       <End Role="Doctor_Specialization" EntitySet="Doctor_Specialization" />
     </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Specialization_Specialization" Association="HealthCareNewModel.Store.FK_Doctor_Specialization_Specialization">
+      <End Role="Specialization" EntitySet="Specialization" />
+      <End Role="Doctor_Specialization" EntitySet="Doctor_Specialization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Appointment_Doctor" Association="HealthCareNewModel.Store.FK_Patient_Appointment_Doctor">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Appointment_Doctor_AppntSlot" Association="HealthCareNewModel.Store.FK_Patient_Appointment_Doctor_AppntSlot">
+      <End Role="Doctor_AppntSlot" EntitySet="Doctor_AppntSlot" />
+      <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
+    </AssociationSet>
     <AssociationSet Name="FK_Patient_Appointment_Patient" Association="HealthCareNewModel.Store.FK_Patient_Appointment_Patient">
       <End Role="Patient" EntitySet="Patient" />
       <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
@@ -59,6 +112,14 @@
     <AssociationSet Name="FK_Patient_Room_Patient" Association="HealthCareNewModel.Store.FK_Patient_Room_Patient">
       <End Role="Patient" EntitySet="Patient" />
       <End Role="Patient_Room" EntitySet="Patient_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Room_Room" Association="HealthCareNewModel.Store.FK_Patient_Room_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Patient_Room" EntitySet="Patient_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Treatment_Doctor" Association="HealthCareNewModel.Store.FK_Patient_Treatment_Doctor">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Patient_Treatment" EntitySet="Patient_Treatment" />
     </AssociationSet>
     <AssociationSet Name="FK_Patient_Treatment_Patient" Association="HealthCareNewModel.Store.FK_Patient_Treatment_Patient">
       <End Role="Patient" EntitySet="Patient" />
@@ -72,8 +133,8 @@
       <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
       <End Role="Prescription_Medicine" EntitySet="Prescription_Medicine" />
     </AssociationSet>
-    <AssociationSet Name="FK_Room_Patient_Room" Association="HealthCareNewModel.Store.FK_Room_Patient_Room">
-      <End Role="Patient_Room" EntitySet="Patient_Room" />
+    <AssociationSet Name="FK_Room_Room_Type" Association="HealthCareNewModel.Store.FK_Room_Room_Type">
+      <End Role="Room_Type" EntitySet="Room_Type" />
       <End Role="Room" EntitySet="Room" />
     </AssociationSet>
     <AssociationSet Name="FK_Staff_Room" Association="HealthCareNewModel.Store.FK_Staff_Room">
@@ -81,11 +142,152 @@
       <End Role="Staff" EntitySet="Staff" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordFormat" Type="int" Nullable="false" />
+    <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="ntext" />
+  </EntityType>
+  <EntityType Name="aspnet_Paths">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredPath" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationAllUsers">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PageSettings" Type="image" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationPerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PathId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="PageSettings" Type="image" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyNames" Type="ntext" Nullable="false" />
+    <Property Name="PropertyValuesString" Type="ntext" Nullable="false" />
+    <Property Name="PropertyValuesBinary" Type="image" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredRoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="CompatibleSchemaVersion" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="char" Nullable="false" MaxLength="32" />
+    <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="EventTime" Type="datetime" Nullable="false" />
+    <Property Name="EventType" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="EventSequence" Type="decimal" Nullable="false" Precision="19" />
+    <Property Name="EventOccurrence" Type="decimal" Nullable="false" Precision="19" />
+    <Property Name="EventCode" Type="int" Nullable="false" />
+    <Property Name="EventDetailCode" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="MachineName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
+    <Property Name="Details" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="treatmentId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="amount" Type="money" Nullable="false" />
+    <Property Name="description" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="dateOfBill" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Doctor">
     <Key>
-      <PropertyRef Name="doctorId" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="dob" Type="date" Nullable="false" />
     <Property Name="gender" Type="varchar" Nullable="false" MaxLength="5" />
@@ -99,58 +301,50 @@
     <Property Name="area" Type="varchar" MaxLength="30" />
     <Property Name="country" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="postalCode" Type="int" Nullable="false" />
+    <Property Name="costPerTreatment" Type="float" />
   </EntityType>
   <EntityType Name="Doctor_AppntSlot">
     <Key>
       <PropertyRef Name="dateId" />
     </Key>
-    <Property Name="dateId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="dateId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="doctorId" Type="int" Nullable="false" />
     <Property Name="appntDate" Type="date" Nullable="false" />
     <Property Name="slotAvaliable" Type="int" />
     <Property Name="slotAllocated" Type="int" />
-    <Property Name="workStartTime" Type="time" />
-    <Property Name="workEndTime" Type="time" />
     <Property Name="timePerSlot" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'HealthCareNew.dbo.Doctor_Room' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="Doctor_Room">
     <Key>
-      <PropertyRef Name="doctorId" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="roomId" Type="varchar" MaxLength="10" />
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="doctorId" Type="int" Nullable="false" />
+    <Property Name="roomId" Type="int" />
     <Property Name="startDateTime" Type="datetime" />
     <Property Name="endDateTime" Type="datetime" />
+    <Property Name="version" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'HealthCareNew.dbo.Doctor_Specialization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="Doctor_Specialization">
     <Key>
-      <PropertyRef Name="doctorId" />
-      <PropertyRef Name="specId" />
+      <PropertyRef Name="doctor" />
+      <PropertyRef Name="specialization" />
     </Key>
-    <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="specId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="doctor" Type="int" Nullable="false" />
+    <Property Name="specialization" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'HealthCareNew.dbo.Nationality' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="Nationality">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Nationality" Type="varchar" MaxLength="50" />
+    <Property Name="Nationality" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
       <PropertyRef Name="patientId" />
     </Key>
-    <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="patientId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="phone" Type="int" Nullable="false" />
     <Property Name="email" Type="varchar" Nullable="false" MaxLength="30" />
@@ -167,57 +361,54 @@
     <Key>
       <PropertyRef Name="appntId" />
     </Key>
-    <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="appntId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="dateId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="patientId" Type="int" Nullable="false" />
+    <Property Name="appntId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="dateId" Type="int" Nullable="false" />
+    <Property Name="doctorId" Type="int" Nullable="false" />
     <Property Name="upcomingPast" Type="varchar" MaxLength="10" />
-    <Property Name="doctorId" Type="nchar" Nullable="false" MaxLength="10" />
-    <Property Name="startTime" Type="datetime" />
-    <Property Name="endTime" Type="datetime" />
-    <Property Name="prescriptionId" Type="varchar" MaxLength="10" />
+    <Property Name="slotNo" Type="int" />
     <Property Name="description" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Patient_Prescription">
     <Key>
       <PropertyRef Name="prescriptionId" />
     </Key>
-    <Property Name="prescriptionId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="prescriptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="patientId" Type="int" Nullable="false" />
     <Property Name="dateIssued" Type="date" Nullable="false" />
-    <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="doctorId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Patient_Room">
     <Key>
-      <PropertyRef Name="roomId" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="roomId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="patientId" Type="int" Nullable="false" />
+    <Property Name="roomId" Type="int" Nullable="false" />
     <Property Name="fromDate" Type="date" />
     <Property Name="toDate" Type="date" />
-    <Property Name="treatmentId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="treatmentId" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6035: The relationship 'FK_Doctor_Patient_Treatment' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-      -->
   <EntityType Name="Patient_Treatment">
     <Key>
       <PropertyRef Name="treatmentId" />
     </Key>
-    <Property Name="treatmentId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="patientId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="doctorId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="prescriptionId" Type="varchar" MaxLength="10" />
+    <Property Name="treatmentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="patientId" Type="int" Nullable="false" />
+    <Property Name="doctorId" Type="int" Nullable="false" />
+    <Property Name="prescriptionId" Type="int" />
     <Property Name="startDate" Type="date" />
     <Property Name="endDate" Type="date" />
-    <Property Name="roomId" Type="varchar" MaxLength="10" />
+    <Property Name="roomId" Type="int" />
     <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="isAdmitted" Type="int" />
   </EntityType>
   <EntityType Name="Prescription_Medicine">
     <Key>
       <PropertyRef Name="medicineId" />
     </Key>
-    <Property Name="medicineId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="prescriptionId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="medicineId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="prescriptionId" Type="int" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="50" />
     <Property Name="description" Type="varchar" MaxLength="50" />
     <Property Name="quantity" Type="int" />
@@ -228,29 +419,44 @@
     <Key>
       <PropertyRef Name="roomId" />
     </Key>
-    <Property Name="roomId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="roomId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="type" Type="varchar" MaxLength="50" />
     <Property Name="roomNum" Type="varchar" MaxLength="10" />
-    <Property Name="description" Type="varchar(max)" />
-    <Property Name="costPerDay" Type="float" />
     <Property Name="vacancy" Type="varchar" MaxLength="10" />
     <Property Name="phoneNum" Type="int" />
     <Property Name="startDate" Type="date" />
     <Property Name="endDate" Type="date" />
     <Property Name="location" Type="varchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="Room_Type">
+    <Key>
+      <PropertyRef Name="type" />
+    </Key>
+    <Property Name="type" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="roomname" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar(max)" />
+    <Property Name="costPerDay" Type="float" />
+  </EntityType>
+  <EntityType Name="Slots">
+    <Key>
+      <PropertyRef Name="slotNo" />
+    </Key>
+    <Property Name="slotNo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="startTime" Type="varchar" MaxLength="50" />
+    <Property Name="endTime" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Specialization">
     <Key>
-      <PropertyRef Name="specId" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="specId" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="specialize" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="specialization" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Staff">
     <Key>
       <PropertyRef Name="staffId" />
     </Key>
-    <Property Name="staffId" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="staffId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="type" Type="varchar" Nullable="false" MaxLength="30" />
     <Property Name="dob" Type="date" Nullable="false" />
@@ -259,18 +465,150 @@
     <Property Name="email" Type="varchar" MaxLength="35" />
     <Property Name="icNum" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="nationality" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="roomId" Type="varchar" MaxLength="10" />
+    <Property Name="roomId" Type="int" />
     <Property Name="street" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="area" Type="varchar" MaxLength="30" />
     <Property Name="country" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="postalCode" Type="int" Nullable="false" />
   </EntityType>
+  <Association Name="FK__aspnet_Me__Appli__11D4A34F">
+    <End Role="aspnet_Applications" Type="HealthCareNewModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="HealthCareNewModel.Store.aspnet_Membership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Me__UserI__12C8C788">
+    <End Role="aspnet_Users" Type="HealthCareNewModel.Store.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="HealthCareNewModel.Store.aspnet_Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pa__Appli__4B0D20AB">
+    <End Role="aspnet_Applications" Type="HealthCareNewModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Paths" Type="HealthCareNewModel.Store.aspnet_Paths" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Paths">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__52AE4273">
+    <End Role="aspnet_Paths" Type="HealthCareNewModel.Store.aspnet_Paths" Multiplicity="1" />
+    <End Role="aspnet_PersonalizationAllUsers" Type="HealthCareNewModel.Store.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationAllUsers">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__58671BC9">
+    <End Role="aspnet_Paths" Type="HealthCareNewModel.Store.aspnet_Paths" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="HealthCareNewModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__UserI__595B4002">
+    <End Role="aspnet_Users" Type="HealthCareNewModel.Store.aspnet_Users" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="HealthCareNewModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pr__UserI__28B808A7">
+    <End Role="aspnet_Users" Type="HealthCareNewModel.Store.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Profile" Type="HealthCareNewModel.Store.aspnet_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Ro__Appli__3429BB53">
+    <End Role="aspnet_Applications" Type="HealthCareNewModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Roles" Type="HealthCareNewModel.Store.aspnet_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__Appli__7DCDAAA2">
+    <End Role="aspnet_Applications" Type="HealthCareNewModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Users" Type="HealthCareNewModel.Store.aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__RoleI__3AD6B8E2">
+    <End Role="aspnet_Roles" Type="HealthCareNewModel.Store.aspnet_Roles" Multiplicity="1" />
+    <End Role="aspnet_UsersInRoles" Type="HealthCareNewModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="aspnet_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__UserI__39E294A9">
+    <End Role="aspnet_Users" Type="HealthCareNewModel.Store.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_UsersInRoles" Type="HealthCareNewModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Doctor_AppntSlot_Doctor">
     <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
     <End Role="Doctor_AppntSlot" Type="HealthCareNewModel.Store.Doctor_AppntSlot" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Doctor">
-        <PropertyRef Name="doctorId" />
+        <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Doctor_AppntSlot">
         <PropertyRef Name="doctorId" />
@@ -279,10 +617,10 @@
   </Association>
   <Association Name="FK_Doctor_Room_Doctor">
     <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
-    <End Role="Doctor_Room" Type="HealthCareNewModel.Store.Doctor_Room" Multiplicity="0..1" />
+    <End Role="Doctor_Room" Type="HealthCareNewModel.Store.Doctor_Room" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Doctor">
-        <PropertyRef Name="doctorId" />
+        <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Doctor_Room">
         <PropertyRef Name="doctorId" />
@@ -306,10 +644,46 @@
     <End Role="Doctor_Specialization" Type="HealthCareNewModel.Store.Doctor_Specialization" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Doctor">
-        <PropertyRef Name="doctorId" />
+        <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Doctor_Specialization">
+        <PropertyRef Name="doctor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Specialization_Specialization">
+    <End Role="Specialization" Type="HealthCareNewModel.Store.Specialization" Multiplicity="1" />
+    <End Role="Doctor_Specialization" Type="HealthCareNewModel.Store.Doctor_Specialization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Doctor_Specialization">
+        <PropertyRef Name="specialization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Appointment_Doctor">
+    <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
+    <End Role="Patient_Appointment" Type="HealthCareNewModel.Store.Patient_Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Patient_Appointment">
         <PropertyRef Name="doctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Appointment_Doctor_AppntSlot">
+    <End Role="Doctor_AppntSlot" Type="HealthCareNewModel.Store.Doctor_AppntSlot" Multiplicity="1" />
+    <End Role="Patient_Appointment" Type="HealthCareNewModel.Store.Patient_Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor_AppntSlot">
+        <PropertyRef Name="dateId" />
+      </Principal>
+      <Dependent Role="Patient_Appointment">
+        <PropertyRef Name="dateId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -349,6 +723,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Patient_Room_Room">
+    <End Role="Room" Type="HealthCareNewModel.Store.Room" Multiplicity="1" />
+    <End Role="Patient_Room" Type="HealthCareNewModel.Store.Patient_Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="Patient_Room">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Treatment_Doctor">
+    <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
+    <End Role="Patient_Treatment" Type="HealthCareNewModel.Store.Patient_Treatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Patient_Treatment">
+        <PropertyRef Name="doctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Patient_Treatment_Patient">
     <End Role="Patient" Type="HealthCareNewModel.Store.Patient" Multiplicity="1" />
     <End Role="Patient_Treatment" Type="HealthCareNewModel.Store.Patient_Treatment" Multiplicity="*" />
@@ -362,14 +760,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Patient_Treatment_Patient_Prescription">
-    <End Role="Patient_Prescription" Type="HealthCareNewModel.Store.Patient_Prescription" Multiplicity="0..1" />
-    <End Role="Patient_Treatment" Type="HealthCareNewModel.Store.Patient_Treatment" Multiplicity="*" />
+    <End Role="Patient_Prescription" Type="HealthCareNewModel.Store.Patient_Prescription" Multiplicity="1" />
+    <End Role="Patient_Treatment" Type="HealthCareNewModel.Store.Patient_Treatment" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Patient_Prescription">
         <PropertyRef Name="prescriptionId" />
       </Principal>
       <Dependent Role="Patient_Treatment">
-        <PropertyRef Name="prescriptionId" />
+        <PropertyRef Name="treatmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -385,15 +783,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Room_Patient_Room">
-    <End Role="Patient_Room" Type="HealthCareNewModel.Store.Patient_Room" Multiplicity="1" />
-    <End Role="Room" Type="HealthCareNewModel.Store.Room" Multiplicity="0..1" />
+  <Association Name="FK_Room_Room_Type">
+    <End Role="Room_Type" Type="HealthCareNewModel.Store.Room_Type" Multiplicity="0..1" />
+    <End Role="Room" Type="HealthCareNewModel.Store.Room" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Patient_Room">
-        <PropertyRef Name="roomId" />
+      <Principal Role="Room_Type">
+        <PropertyRef Name="type" />
       </Principal>
       <Dependent Role="Room">
-        <PropertyRef Name="roomId" />
+        <PropertyRef Name="type" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

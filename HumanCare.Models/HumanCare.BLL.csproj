@@ -38,6 +38,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\HumanCare\bin\System.Web.Mvc.dll</HintPath>
@@ -49,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="doctor\SpecializationBLL.cs" />
+    <Compile Include="DoctorAssignRoom.cs" />
     <Compile Include="PatientAppointment.cs" />
     <Compile Include="PatientRepository.cs" />
     <Compile Include="PatientRoomRepository.cs" />

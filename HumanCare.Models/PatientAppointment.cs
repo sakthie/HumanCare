@@ -27,7 +27,7 @@ namespace HumanCare.BLL
                     appointObj.appntId = appntId;
                     appointObj.dateId = appointmentDateID;
                     appointObj.doctorId = doctorId;
-                    appointObj.prescriptionId = prescId;
+                   // appointObj.prescriptionId = prescId;
                     appointObj.description = "patient";
                     appointObj.upcomingPast = "Y";
                     entities.Patient_Appointment.AddObject(appointObj);
@@ -84,7 +84,7 @@ namespace HumanCare.BLL
                     appointObj.dateId = dateId;
                     appointObj.doctorId = doctorId;
                     appointObj.patientId = patientId;
-                    appointObj.prescriptionId = prescId;
+                    //appointObj.prescriptionId = prescId;
                     entities.Patient_Appointment.AddObject(appointObj);
                     entities.SaveChanges();
                     DoctorslotupdateData(dateId, doctorId);

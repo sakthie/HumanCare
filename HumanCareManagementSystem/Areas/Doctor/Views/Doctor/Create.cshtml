@@ -1,0 +1,149 @@
+﻿@model Humancare.Data.Doctor
+
+
+
+@Html.Partial("DoctorNavigationPartial")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+     @Scripts.Render("~/bundles/jquery")
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jqueryui")
+
+       
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.datepicker.setDefaults({ dateFormat: 'mm-dd-yy' });
+           
+           
+        });
+    </script>
+} 
+    
+ 
+   
+    
+    
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>Doctor</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.dob)
+            </div>
+            <div class="editor-field">
+            
+                @Html.EditorFor(model => model.dob)
+                @Html.ValidationMessageFor(model => model.dob)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.gender)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.gender)
+                @Html.ValidationMessageFor(model => model.gender)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.phone)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.phone)
+                @Html.ValidationMessageFor(model => model.phone)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.email)
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+    
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.nationality)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.nationality)
+                @Html.ValidationMessageFor(model => model.nationality)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.icNum)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.icNum)
+                @Html.ValidationMessageFor(model => model.icNum)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.street)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.street)
+                @Html.ValidationMessageFor(model => model.street)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.area)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.area)
+                @Html.ValidationMessageFor(model => model.area)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.country)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.country)
+                @Html.ValidationMessageFor(model => model.country)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.postalCode)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.postalCode)
+                @Html.ValidationMessageFor(model => model.postalCode)
+            </div>
+            <div class="editor-label">
+               <!-- @Html.LabelFor(model => model.Specializations) -->
+               Specialization
+            </div>
+            <div class="editor-field">
+            
+               @Html.ListBox("Specializations", new MultiSelectList(ViewBag.SpecializationList, "id", "specialization"))
+               
+                @Html.ValidationMessageFor(model => model.Specializations)
+            </div>
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+
+</html>

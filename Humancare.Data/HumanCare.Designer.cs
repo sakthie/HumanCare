@@ -28,7 +28,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK__aspnet_Pe__UserI__595B4002", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Humancare.Data.aspnet_Users), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK__aspnet_Pr__UserI__28B808A7", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.aspnet_Users), "aspnet_Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Humancare.Data.aspnet_Profile), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Doctor_AppntSlot_Doctor", "Doctor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Doctor), "Doctor_AppntSlot", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Doctor_AppntSlot), true)]
-[assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Doctor_Room_Doctor", "Doctor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Humancare.Data.Doctor), "Doctor_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Doctor_Room), true)]
+[assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Doctor_Room_Doctor", "Doctor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Doctor), "Doctor_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Doctor_Room), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Appointment_Doctor", "Doctor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Doctor), "Patient_Appointment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Appointment), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Treatment_Doctor", "Doctor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Doctor), "Patient_Treatment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Treatment), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Appointment_Doctor_AppntSlot", "Doctor_AppntSlot", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Doctor_AppntSlot), "Patient_Appointment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Appointment), true)]
@@ -37,7 +37,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Prescription_Patient", "Patient", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Patient), "Patient_Prescription", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Prescription), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Room_Patient", "Patient", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Patient), "Patient_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Room), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Treatment_Patient", "Patient", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Patient), "Patient_Treatment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Treatment), true)]
-[assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Appointment_Patient_Prescription", "Patient_Prescription", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Humancare.Data.Patient_Prescription), "Patient_Appointment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Appointment), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Treatment_Patient_Prescription", "Patient_Prescription", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Patient_Prescription), "Patient_Treatment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Humancare.Data.Patient_Treatment), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Prescription_Medicine_Patient_Prescription", "Patient_Prescription", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Patient_Prescription), "Prescription_Medicine", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Prescription_Medicine), true)]
 [assembly: EdmRelationshipAttribute("HealthCareNewModel", "FK_Patient_Room_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Humancare.Data.Room), "Patient_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Humancare.Data.Patient_Room), true)]
@@ -255,6 +254,22 @@ namespace Humancare.Data
             }
         }
         private ObjectSet<aspnet_WebEvent_Events> _aspnet_WebEvent_Events;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Bill> Bills
+        {
+            get
+            {
+                if ((_Bills == null))
+                {
+                    _Bills = base.CreateObjectSet<Bill>("Bills");
+                }
+                return _Bills;
+            }
+        }
+        private ObjectSet<Bill> _Bills;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -577,6 +592,14 @@ namespace Humancare.Data
         public void AddToaspnet_WebEvent_Events(aspnet_WebEvent_Events aspnet_WebEvent_Events)
         {
             base.AddObject("aspnet_WebEvent_Events", aspnet_WebEvent_Events);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Bills EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBills(Bill bill)
+        {
+            base.AddObject("Bills", bill);
         }
     
         /// <summary>
@@ -3497,6 +3520,165 @@ namespace Humancare.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HealthCareNewModel", Name="Bill")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Bill : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Bill object.
+        /// </summary>
+        /// <param name="treatmentId">Initial value of the treatmentId property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="amount">Initial value of the amount property.</param>
+        /// <param name="description">Initial value of the description property.</param>
+        /// <param name="dateOfBill">Initial value of the dateOfBill property.</param>
+        public static Bill CreateBill(global::System.Int32 treatmentId, global::System.Int32 id, global::System.Decimal amount, global::System.String description, global::System.DateTime dateOfBill)
+        {
+            Bill bill = new Bill();
+            bill.treatmentId = treatmentId;
+            bill.Id = id;
+            bill.amount = amount;
+            bill.description = description;
+            bill.dateOfBill = dateOfBill;
+            return bill;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 treatmentId
+        {
+            get
+            {
+                return _treatmentId;
+            }
+            set
+            {
+                OntreatmentIdChanging(value);
+                ReportPropertyChanging("treatmentId");
+                _treatmentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("treatmentId");
+                OntreatmentIdChanged();
+            }
+        }
+        private global::System.Int32 _treatmentId;
+        partial void OntreatmentIdChanging(global::System.Int32 value);
+        partial void OntreatmentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal amount
+        {
+            get
+            {
+                return _amount;
+            }
+            set
+            {
+                OnamountChanging(value);
+                ReportPropertyChanging("amount");
+                _amount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("amount");
+                OnamountChanged();
+            }
+        }
+        private global::System.Decimal _amount;
+        partial void OnamountChanging(global::System.Decimal value);
+        partial void OnamountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime dateOfBill
+        {
+            get
+            {
+                return _dateOfBill;
+            }
+            set
+            {
+                OndateOfBillChanging(value);
+                ReportPropertyChanging("dateOfBill");
+                _dateOfBill = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("dateOfBill");
+                OndateOfBillChanged();
+            }
+        }
+        private global::System.DateTime _dateOfBill;
+        partial void OndateOfBillChanging(global::System.DateTime value);
+        partial void OndateOfBillChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="HealthCareNewModel", Name="Doctor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -3876,6 +4058,30 @@ namespace Humancare.Data
         private global::System.Int32 _postalCode;
         partial void OnpostalCodeChanging(global::System.Int32 value);
         partial void OnpostalCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> costPerTreatment
+        {
+            get
+            {
+                return _costPerTreatment;
+            }
+            set
+            {
+                OncostPerTreatmentChanging(value);
+                ReportPropertyChanging("costPerTreatment");
+                _costPerTreatment = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("costPerTreatment");
+                OncostPerTreatmentChanged();
+            }
+        }
+        private Nullable<global::System.Double> _costPerTreatment;
+        partial void OncostPerTreatmentChanging(Nullable<global::System.Double> value);
+        partial void OncostPerTreatmentChanged();
 
         #endregion
     
@@ -4251,11 +4457,13 @@ namespace Humancare.Data
         /// </summary>
         /// <param name="id">Initial value of the id property.</param>
         /// <param name="doctorId">Initial value of the doctorId property.</param>
-        public static Doctor_Room CreateDoctor_Room(global::System.Int32 id, global::System.Int32 doctorId)
+        /// <param name="version">Initial value of the version property.</param>
+        public static Doctor_Room CreateDoctor_Room(global::System.Int32 id, global::System.Int32 doctorId, global::System.Int32 version)
         {
             Doctor_Room doctor_Room = new Doctor_Room();
             doctor_Room.id = id;
             doctor_Room.doctorId = doctorId;
+            doctor_Room.version = version;
             return doctor_Room;
         }
 
@@ -4384,6 +4592,30 @@ namespace Humancare.Data
         private Nullable<global::System.DateTime> _endDateTime;
         partial void OnendDateTimeChanging(Nullable<global::System.DateTime> value);
         partial void OnendDateTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private global::System.Int32 _version;
+        partial void OnversionChanging(global::System.Int32 value);
+        partial void OnversionChanged();
 
         #endregion
     
@@ -5159,30 +5391,6 @@ namespace Humancare.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> prescriptionId
-        {
-            get
-            {
-                return _prescriptionId;
-            }
-            set
-            {
-                OnprescriptionIdChanging(value);
-                ReportPropertyChanging("prescriptionId");
-                _prescriptionId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("prescriptionId");
-                OnprescriptionIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _prescriptionId;
-        partial void OnprescriptionIdChanging(Nullable<global::System.Int32> value);
-        partial void OnprescriptionIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String description
         {
             get
@@ -5316,44 +5524,6 @@ namespace Humancare.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Patient>("HealthCareNewModel.FK_Patient_Appointment_Patient", "Patient", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HealthCareNewModel", "FK_Patient_Appointment_Patient_Prescription", "Patient_Prescription")]
-        public Patient_Prescription Patient_Prescription
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Patient_Prescription>("HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription", "Patient_Prescription").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Patient_Prescription>("HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription", "Patient_Prescription").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Patient_Prescription> Patient_PrescriptionReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Patient_Prescription>("HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription", "Patient_Prescription");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Patient_Prescription>("HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription", "Patient_Prescription", value);
                 }
             }
         }
@@ -5528,28 +5698,6 @@ namespace Humancare.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Patient>("HealthCareNewModel.FK_Patient_Prescription_Patient", "Patient", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HealthCareNewModel", "FK_Patient_Appointment_Patient_Prescription", "Patient_Appointment")]
-        public EntityCollection<Patient_Appointment> Patient_Appointment
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Patient_Appointment>("HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription", "Patient_Appointment");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Patient_Appointment>("HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription", "Patient_Appointment", value);
                 }
             }
         }
@@ -6099,6 +6247,30 @@ namespace Humancare.Data
         private global::System.String _description;
         partial void OndescriptionChanging(global::System.String value);
         partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> isAdmitted
+        {
+            get
+            {
+                return _isAdmitted;
+            }
+            set
+            {
+                OnisAdmittedChanging(value);
+                ReportPropertyChanging("isAdmitted");
+                _isAdmitted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("isAdmitted");
+                OnisAdmittedChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _isAdmitted;
+        partial void OnisAdmittedChanging(Nullable<global::System.Int32> value);
+        partial void OnisAdmittedChanged();
 
         #endregion
     
@@ -7104,24 +7276,24 @@ namespace Humancare.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String specialization1
+        public global::System.String specialization
         {
             get
             {
-                return _specialization1;
+                return _specialization;
             }
             set
             {
-                Onspecialization1Changing(value);
-                ReportPropertyChanging("specialization1");
-                _specialization1 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("specialization1");
-                Onspecialization1Changed();
+                OnspecializationChanging(value);
+                ReportPropertyChanging("specialization");
+                _specialization = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("specialization");
+                OnspecializationChanged();
             }
         }
-        private global::System.String _specialization1;
-        partial void Onspecialization1Changing(global::System.String value);
-        partial void Onspecialization1Changed();
+        private global::System.String _specialization;
+        partial void OnspecializationChanging(global::System.String value);
+        partial void OnspecializationChanged();
 
         #endregion
     

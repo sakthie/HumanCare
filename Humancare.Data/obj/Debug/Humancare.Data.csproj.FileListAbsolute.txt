@@ -14,3 +14,9 @@ D:\HumanCare\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.pdb
 D:\HumanCare\HumanCare\Humancare.Data\obj\Debug\ResolveAssemblyReference.cache
 D:\HumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.dll
 D:\HumanCare\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.pdb
+C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll.config
+C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.dll
+C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\Humancare.Data\bin\Debug\Humancare.Data.pdb
+C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\Humancare.Data\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.dll
+C:\Users\Milan\Documents\Visual Studio 2010\Projects\HumanCareSakthi\HumanCare\Humancare.Data\obj\Debug\Humancare.Data.pdb

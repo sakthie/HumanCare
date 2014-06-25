@@ -1,0 +1,69 @@
+﻿@model Humancare.Data.Doctor_Room
+@Html.Partial("DoctorNavigationPartial")
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Doctor_Room</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.doctorId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.doctorId, new SelectList(
+                  ViewBag.DoctorList,
+                  "id",
+                  "name",
+                Model.doctorId))
+            @Html.ValidationMessageFor(model => model.doctorId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.roomId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.roomId, new SelectList(
+                  ViewBag.RoomList,
+                  "roomId",
+                  "roomNum",
+                Model.roomId))
+            @Html.ValidationMessageFor(model => model.roomId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.startDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.startDateTime)
+            @Html.ValidationMessageFor(model => model.startDateTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.endDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.endDateTime)
+            @Html.ValidationMessageFor(model => model.endDateTime)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

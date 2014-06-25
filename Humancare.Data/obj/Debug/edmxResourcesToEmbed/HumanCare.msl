@@ -1,180 +1,191 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="HealthCareNewModelStoreContainer" CdmEntityContainer="HealthCareNewEntities">
+    <EntitySetMapping Name="aspnet_Applications">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_Applications">
+        <MappingFragment StoreEntitySet="aspnet_Applications">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="LoweredApplicationName" ColumnName="LoweredApplicationName" />
+          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Membership">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_Membership">
+        <MappingFragment StoreEntitySet="aspnet_Membership">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+          <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+          <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Paths">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_Paths">
+        <MappingFragment StoreEntitySet="aspnet_Paths">
+          <ScalarProperty Name="LoweredPath" ColumnName="LoweredPath" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="PathId" ColumnName="PathId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_PersonalizationAllUsers">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_PersonalizationAllUsers">
+        <MappingFragment StoreEntitySet="aspnet_PersonalizationAllUsers">
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+          <ScalarProperty Name="PathId" ColumnName="PathId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_PersonalizationPerUser">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_PersonalizationPerUser">
+        <MappingFragment StoreEntitySet="aspnet_PersonalizationPerUser">
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PathId" ColumnName="PathId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Profile">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_Profile">
+        <MappingFragment StoreEntitySet="aspnet_Profile">
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="PropertyValuesBinary" ColumnName="PropertyValuesBinary" />
+          <ScalarProperty Name="PropertyValuesString" ColumnName="PropertyValuesString" />
+          <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Roles">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_Roles">
+        <MappingFragment StoreEntitySet="aspnet_Roles">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_SchemaVersions">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_SchemaVersions">
+        <MappingFragment StoreEntitySet="aspnet_SchemaVersions">
+          <ScalarProperty Name="IsCurrentVersion" ColumnName="IsCurrentVersion" />
+          <ScalarProperty Name="CompatibleSchemaVersion" ColumnName="CompatibleSchemaVersion" />
+          <ScalarProperty Name="Feature" ColumnName="Feature" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Users">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_Users">
+        <MappingFragment StoreEntitySet="aspnet_Users">
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_WebEvent_Events">
+      <EntityTypeMapping TypeName="HealthCareNewModel.aspnet_WebEvent_Events">
+        <MappingFragment StoreEntitySet="aspnet_WebEvent_Events">
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+          <ScalarProperty Name="RequestUrl" ColumnName="RequestUrl" />
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="ApplicationVirtualPath" ColumnName="ApplicationVirtualPath" />
+          <ScalarProperty Name="ApplicationPath" ColumnName="ApplicationPath" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="EventDetailCode" ColumnName="EventDetailCode" />
+          <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+          <ScalarProperty Name="EventOccurrence" ColumnName="EventOccurrence" />
+          <ScalarProperty Name="EventSequence" ColumnName="EventSequence" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+          <ScalarProperty Name="EventTimeUtc" ColumnName="EventTimeUtc" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bills">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="dateOfBill" ColumnName="dateOfBill" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Doctors">
       <EntityTypeMapping TypeName="HealthCareNewModel.Doctor">
         <MappingFragment StoreEntitySet="Doctor">
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="dob" ColumnName="dob" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="nationality" ColumnName="nationality" />
-          <ScalarProperty Name="icNum" ColumnName="icNum" />
-          <ScalarProperty Name="street" ColumnName="street" />
-          <ScalarProperty Name="area" ColumnName="area" />
-          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="costPerTreatment" ColumnName="costPerTreatment" />
           <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="icNum" ColumnName="icNum" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Doctor_AppntSlot">
       <EntityTypeMapping TypeName="HealthCareNewModel.Doctor_AppntSlot">
         <MappingFragment StoreEntitySet="Doctor_AppntSlot">
-          <ScalarProperty Name="dateId" ColumnName="dateId" />
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="appntDate" ColumnName="appntDate" />
-          <ScalarProperty Name="slotAvaliable" ColumnName="slotAvaliable" />
-          <ScalarProperty Name="slotAllocated" ColumnName="slotAllocated" />
-          <ScalarProperty Name="workStartTime" ColumnName="workStartTime" />
-          <ScalarProperty Name="workEndTime" ColumnName="workEndTime" />
           <ScalarProperty Name="timePerSlot" ColumnName="timePerSlot" />
+          <ScalarProperty Name="slotAllocated" ColumnName="slotAllocated" />
+          <ScalarProperty Name="slotAvaliable" ColumnName="slotAvaliable" />
+          <ScalarProperty Name="appntDate" ColumnName="appntDate" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="dateId" ColumnName="dateId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Doctor_Room">
       <EntityTypeMapping TypeName="HealthCareNewModel.Doctor_Room">
         <MappingFragment StoreEntitySet="Doctor_Room">
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="roomId" ColumnName="roomId" />
-          <ScalarProperty Name="startDateTime" ColumnName="startDateTime" />
+          <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="endDateTime" ColumnName="endDateTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doctor_Specialization">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Doctor_Specialization">
-        <MappingFragment StoreEntitySet="Doctor_Specialization">
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="specId" ColumnName="specId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Patients">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Patient">
-        <MappingFragment StoreEntitySet="Patient">
-          <ScalarProperty Name="patientId" ColumnName="patientId" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="dob" ColumnName="dob" />
-          <ScalarProperty Name="nationality" ColumnName="nationality" />
-          <ScalarProperty Name="icNum" ColumnName="icNum" />
-          <ScalarProperty Name="street" ColumnName="street" />
-          <ScalarProperty Name="area" ColumnName="area" />
-          <ScalarProperty Name="country" ColumnName="country" />
-          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Patient_Appointment">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Appointment">
-        <MappingFragment StoreEntitySet="Patient_Appointment">
-          <ScalarProperty Name="patientId" ColumnName="patientId" />
-          <ScalarProperty Name="appntId" ColumnName="appntId" />
-          <ScalarProperty Name="dateId" ColumnName="dateId" />
-          <ScalarProperty Name="upcomingPast" ColumnName="upcomingPast" />
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="startTime" ColumnName="startTime" />
-          <ScalarProperty Name="endTime" ColumnName="endTime" />
-          <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
-          <ScalarProperty Name="description" ColumnName="description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Patient_Prescription">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Prescription">
-        <MappingFragment StoreEntitySet="Patient_Prescription">
-          <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
-          <ScalarProperty Name="patientId" ColumnName="patientId" />
-          <ScalarProperty Name="dateIssued" ColumnName="dateIssued" />
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Patient_Room">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Room">
-        <MappingFragment StoreEntitySet="Patient_Room">
-          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="startDateTime" ColumnName="startDateTime" />
           <ScalarProperty Name="roomId" ColumnName="roomId" />
-          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
-          <ScalarProperty Name="toDate" ColumnName="toDate" />
-          <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Patient_Treatment">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Treatment">
-        <MappingFragment StoreEntitySet="Patient_Treatment">
-          <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
-          <ScalarProperty Name="patientId" ColumnName="patientId" />
           <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="roomId" ColumnName="roomId" />
-          <ScalarProperty Name="description" ColumnName="description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Prescription_Medicine">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Prescription_Medicine">
-        <MappingFragment StoreEntitySet="Prescription_Medicine">
-          <ScalarProperty Name="medicineId" ColumnName="medicineId" />
-          <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="days" ColumnName="days" />
-          <ScalarProperty Name="inTake" ColumnName="inTake" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Rooms">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Room">
-        <MappingFragment StoreEntitySet="Room">
-          <ScalarProperty Name="roomId" ColumnName="roomId" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="roomNum" ColumnName="roomNum" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="costPerDay" ColumnName="costPerDay" />
-          <ScalarProperty Name="vacancy" ColumnName="vacancy" />
-          <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="location" ColumnName="location" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Specializations">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Specialization">
-        <MappingFragment StoreEntitySet="Specialization">
-          <ScalarProperty Name="specId" ColumnName="specId" />
-          <ScalarProperty Name="specialize" ColumnName="specialize" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Staffs">
-      <EntityTypeMapping TypeName="HealthCareNewModel.Staff">
-        <MappingFragment StoreEntitySet="Staff">
-          <ScalarProperty Name="staffId" ColumnName="staffId" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="dob" ColumnName="dob" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="icNum" ColumnName="icNum" />
-          <ScalarProperty Name="nationality" ColumnName="nationality" />
-          <ScalarProperty Name="roomId" ColumnName="roomId" />
-          <ScalarProperty Name="street" ColumnName="street" />
-          <ScalarProperty Name="area" ColumnName="area" />
-          <ScalarProperty Name="country" ColumnName="country" />
-          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -186,5 +197,163 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="icNum" ColumnName="icNum" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Appointment">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Appointment">
+        <MappingFragment StoreEntitySet="Patient_Appointment">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="slotNo" ColumnName="slotNo" />
+          <ScalarProperty Name="upcomingPast" ColumnName="upcomingPast" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="dateId" ColumnName="dateId" />
+          <ScalarProperty Name="appntId" ColumnName="appntId" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Prescription">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Prescription">
+        <MappingFragment StoreEntitySet="Patient_Prescription">
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="dateIssued" ColumnName="dateIssued" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Room">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Room">
+        <MappingFragment StoreEntitySet="Patient_Room">
+          <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="roomId" ColumnName="roomId" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Treatment">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Treatment">
+        <MappingFragment StoreEntitySet="Patient_Treatment">
+          <ScalarProperty Name="isAdmitted" ColumnName="isAdmitted" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="roomId" ColumnName="roomId" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prescription_Medicine">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Prescription_Medicine">
+        <MappingFragment StoreEntitySet="Prescription_Medicine">
+          <ScalarProperty Name="inTake" ColumnName="inTake" />
+          <ScalarProperty Name="days" ColumnName="days" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
+          <ScalarProperty Name="medicineId" ColumnName="medicineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+          <ScalarProperty Name="vacancy" ColumnName="vacancy" />
+          <ScalarProperty Name="roomNum" ColumnName="roomNum" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="roomId" ColumnName="roomId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Room_Type">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Room_Type">
+        <MappingFragment StoreEntitySet="Room_Type">
+          <ScalarProperty Name="costPerDay" ColumnName="costPerDay" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="roomname" ColumnName="roomname" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slots">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Slot">
+        <MappingFragment StoreEntitySet="Slots">
+          <ScalarProperty Name="endTime" ColumnName="endTime" />
+          <ScalarProperty Name="startTime" ColumnName="startTime" />
+          <ScalarProperty Name="slotNo" ColumnName="slotNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specializations">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Specialization">
+        <MappingFragment StoreEntitySet="Specialization">
+          <ScalarProperty Name="specialization" ColumnName="specialization" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="HealthCareNewModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="roomId" ColumnName="roomId" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="icNum" ColumnName="icNum" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="staffId" ColumnName="staffId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="HealthCareNewModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+      <EndProperty Name="aspnet_Users">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="aspnet_Roles">
+        <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Doctor_Specialization" TypeName="HealthCareNewModel.Doctor_Specialization" StoreEntitySet="Doctor_Specialization">
+      <EndProperty Name="Specialization">
+        <ScalarProperty Name="id" ColumnName="specialization" />
+      </EndProperty>
+      <EndProperty Name="Doctor">
+        <ScalarProperty Name="id" ColumnName="doctor" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

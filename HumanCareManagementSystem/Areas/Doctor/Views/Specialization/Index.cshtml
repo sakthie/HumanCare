@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Humancare.Data.Specialization>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Specialization Details";
 }
-
-<h2>Index</h2>
+@Html.Partial("DoctorNavigationPartial")
+<h2>Specialization Details</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Specialization", "Create")
 </p>
 <table>
     <tr>

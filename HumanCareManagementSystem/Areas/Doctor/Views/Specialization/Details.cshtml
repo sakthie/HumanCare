@@ -1,0 +1,28 @@
+﻿@model Humancare.Data.Specialization
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+@Html.Partial("DoctorNavigationPartial")
+    <fieldset>
+        <legend>Specialization</legend>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.specialization)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.specialization)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model Humancare.Data.Doctor_Room
+@Html.Partial("DoctorNavigationPartial")
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Doctor_Room</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Doctor.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Doctor.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Room.roomNum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Room.roomNum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.startDateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.startDateTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.endDateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.endDateTime)
+    </div>
+</fieldset>
+<p>
+    <!--@Html.ActionLink("Edit", "Edit", new { id=Model.id }) |-->
+    @Html.ActionLink("Back to List", "Index")
+</p>

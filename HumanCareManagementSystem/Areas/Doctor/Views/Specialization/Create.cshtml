@@ -1,10 +1,11 @@
 ﻿@model Humancare.Data.Specialization
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create New Specialization";
+    
 }
-
-<h2>Create</h2>
+@Html.Partial("DoctorNavigationPartial")
+<h2>Create New Specialization</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -27,7 +28,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Specialization List", "Index")
 </div>
 
 @section Scripts {

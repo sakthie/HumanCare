@@ -54,6 +54,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HumanCare.edmx</DependentUpon>
     </Compile>
+    <Compile Include="model\Doctor.cs" />
+    <Compile Include="model\DoctorRoom.cs" />
+    <Compile Include="model\Specialization.cs" />
+    <Compile Include="repositories\Doctor.cs" />
+    <Compile Include="repositories\Specialization.cs" />
     <Compile Include="ViewModel\PatientAppointment.cs" />
     <Compile Include="ViewModel\PatientRoomVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="backup\HumanCare3-6-15-MembershipTablesIncluded.bak" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

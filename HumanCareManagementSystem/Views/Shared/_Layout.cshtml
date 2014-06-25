@@ -5,8 +5,11 @@
         <title>@ViewBag.Title - Human Care Hospital management system</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+       
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+         @RenderSection("scripts", required: false)
+         
     </head>
     <body>
       <div class="Main"> 
@@ -22,12 +25,12 @@
                 <img src="../../Images/hospital-management-erp.jpg" alt="Smiley face" height="150" width="700" /><br />
               </div>
                   <div id="buttons">
-                <a class="button" href="@Url.Action("Index","Home")">Home</a> 
-                <a class="button" href="@Url.Action("PatientMgmt","Home")">Patient Management</a> 
-                <a class="button" href="@Url.Action("PatientAppt","Home")">Patient Appointment</a>
-                <a class="button" href="@Url.Action("PatientRoom","Home")">Patient Room Booking</a>
-                <a class="button" href="@Url.Action("DoctorsArena","Home")">Doctors arena</a> 
-                <a class="button" href="@Url.Action("Billing","Home")">Hospital billing</a> 
+                <a class="button" href="@Url.Action("Index", "Home", new { area = "" })">Home</a> 
+                <a class="button" href="@Url.Action("PatientMgmt", "Home", new { area = "" })">Patient Management</a> 
+                <a class="button" href="@Url.Action("PatientAppt", "Home", new { area = "" })">Patient Appointment</a>
+                <a class="button" href="@Url.Action("PatientRoom", "Home", new { area = "" })">Patient Room Booking</a>
+                <a class="button" href="@Url.Action("Index","Doctor" , new { area = "Doctor" })">Doctors Management</a>            
+                <a class="button" href="@Url.Action("Billing", "Home", new { area = "" })">Hospital billing</a> 
               </div>
                 </div>
              </div>
@@ -40,12 +43,11 @@
         </div>
         <footer>
             <div id="footer" class="footer">
-                 Humancare.com © 2014. All Rights Reserved. <a href="http://google.com">Privacy Policy</a> 
+                 Humancare.com © 2014. All Rights Reserved. <a href="">Privacy Policy</a> 
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
+       
         </div>
     </body>
 </html>

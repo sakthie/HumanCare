@@ -1,9 +1,9 @@
 ﻿@model Humancare.Data.Specialization
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Specialization";
 }
-
+@Html.Partial("DoctorNavigationPartial")
 <h2>Edit</h2>
 
 @using (Html.BeginForm()) {
@@ -29,7 +29,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Specialisation List", "Index")
 </div>
 
 @section Scripts {

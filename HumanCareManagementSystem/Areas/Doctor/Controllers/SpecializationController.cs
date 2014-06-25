@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity.Validation;
 using Humancare.Data;
-using HumanCare.BLL.doctor;
+using HumanCare.BLL.repositories;
 
 
 namespace HumanCarePresentationLayer.Areas.Doctor.Controllers
@@ -14,8 +14,9 @@ namespace HumanCarePresentationLayer.Areas.Doctor.Controllers
     {
         //
         // GET: /Doctor/Specialization/
-       
-        SpecializationBLL specializationBLL = new SpecializationBLL();
+
+        SpecializationRepository specializationBLL = new SpecializationRepository();
+        HealthCareNewEntities entities = new HealthCareNewEntities();
         public ActionResult Index()
         {
             IEnumerable<Specialization> specilizations = specializationBLL.getSpecializations();
@@ -27,8 +28,8 @@ namespace HumanCarePresentationLayer.Areas.Doctor.Controllers
 
         public ActionResult Details(int id)
         {
-            IEnumerable<Specialization> specilizations = specializationBLL.getSpecializations();
-            return View(specilizations);
+            Specialization specilization = specializationBLL.getSpecialization(id);
+            return View(specilization);
         }
 
         //
@@ -37,6 +38,7 @@ namespace HumanCarePresentationLayer.Areas.Doctor.Controllers
         public ActionResult Create()
         {
             Specialization s = new Specialization();
+
             return View(s);
         }
 
@@ -44,11 +46,13 @@ namespace HumanCarePresentationLayer.Areas.Doctor.Controllers
         // POST: /Doctor/Specialization/Create
 
         [HttpPost]
-        public ActionResult Create(Specialization specilization)
+        public ActionResult Create(Specialization specilization, FormCollection collection)
         {
             try
             {
+                
                 specializationBLL.save(specilization);
+            
                 return RedirectToAction("Index");
             }
             catch(Exception e)
@@ -90,7 +94,7 @@ namespace HumanCarePresentationLayer.Areas.Doctor.Controllers
                 // TODO: Add update logic here
                 Specialization s = specializationBLL.getSpecialization(id);
                 UpdateModel(s);
-                specializationBLL.save(s);
+                specializationBLL.save();
                 return RedirectToAction("Index");
             }
             catch(Exception e)

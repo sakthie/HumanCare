@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Humancare.Data.Doctor>
+@using Humancare.Data;
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+@Html.Partial("DoctorNavigationPartial")
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.icNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.postalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specializations)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dob)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.nationality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.icNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.postalCode)
+            </td>
+            <td>
+             @foreach (var speci in item.Specializations)
+             {
+                @Html.DisplayFor(specialization => speci.specialization) 
+                
+             }
+             
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

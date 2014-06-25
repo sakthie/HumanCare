@@ -17,6 +17,7 @@
           <EntitySet Name="aspnet_Users" EntityType="HealthCareNewModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_UsersInRoles" EntityType="HealthCareNewModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="HealthCareNewModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Bill" EntityType="HealthCareNewModel.Store.Bill" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Doctor" EntityType="HealthCareNewModel.Store.Doctor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Doctor_AppntSlot" EntityType="HealthCareNewModel.Store.Doctor_AppntSlot" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Doctor_Room" EntityType="HealthCareNewModel.Store.Doctor_Room" store:Type="Tables" Schema="dbo" />
@@ -107,10 +108,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Appointment_Patient" Association="HealthCareNewModel.Store.FK_Patient_Appointment_Patient">
             <End Role="Patient" EntitySet="Patient" />
-            <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Patient_Appointment_Patient_Prescription" Association="HealthCareNewModel.Store.FK_Patient_Appointment_Patient_Prescription">
-            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
             <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Prescription_Patient" Association="HealthCareNewModel.Store.FK_Patient_Prescription_Patient">
@@ -281,6 +278,16 @@
           <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
           <Property Name="Details" Type="ntext" />
         </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="treatmentId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="amount" Type="money" Nullable="false" />
+          <Property Name="description" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="dateOfBill" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Doctor">
           <Key>
             <PropertyRef Name="id" />
@@ -299,6 +306,7 @@
           <Property Name="area" Type="varchar" MaxLength="30" />
           <Property Name="country" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="postalCode" Type="int" Nullable="false" />
+          <Property Name="costPerTreatment" Type="float" />
         </EntityType>
         <EntityType Name="Doctor_AppntSlot">
           <Key>
@@ -315,19 +323,20 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="doctorId" Type="int" Nullable="false" />
           <Property Name="roomId" Type="int" />
           <Property Name="startDateTime" Type="datetime" />
           <Property Name="endDateTime" Type="datetime" />
+          <Property Name="version" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Doctor_Specialization">
           <Key>
             <PropertyRef Name="doctor" />
-            <PropertyRef Name="specization" />
+            <PropertyRef Name="specialization" />
           </Key>
           <Property Name="doctor" Type="int" Nullable="false" />
-          <Property Name="specization" Type="int" Nullable="false" />
+          <Property Name="specialization" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Nationality">
           <Key>
@@ -363,7 +372,6 @@
           <Property Name="doctorId" Type="int" Nullable="false" />
           <Property Name="upcomingPast" Type="varchar" MaxLength="10" />
           <Property Name="slotNo" Type="int" />
-          <Property Name="prescriptionId" Type="int" />
           <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Patient_Prescription">
@@ -398,6 +406,7 @@
           <Property Name="endDate" Type="date" />
           <Property Name="roomId" Type="int" />
           <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="isAdmitted" Type="int" />
         </EntityType>
         <EntityType Name="Prescription_Medicine">
           <Key>
@@ -612,14 +621,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Doctor_Room_Doctor">
-          <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="0..1" />
+          <End Role="Doctor" Type="HealthCareNewModel.Store.Doctor" Multiplicity="1" />
           <End Role="Doctor_Room" Type="HealthCareNewModel.Store.Doctor_Room" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Doctor">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Doctor_Room">
-              <PropertyRef Name="roomId" />
+              <PropertyRef Name="doctorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -655,7 +664,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Doctor_Specialization">
-              <PropertyRef Name="specization" />
+              <PropertyRef Name="specialization" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -692,18 +701,6 @@
             </Principal>
             <Dependent Role="Patient_Appointment">
               <PropertyRef Name="patientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Patient_Appointment_Patient_Prescription">
-          <End Role="Patient_Prescription" Type="HealthCareNewModel.Store.Patient_Prescription" Multiplicity="0..1" />
-          <End Role="Patient_Appointment" Type="HealthCareNewModel.Store.Patient_Appointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patient_Prescription">
-              <PropertyRef Name="prescriptionId" />
-            </Principal>
-            <Dependent Role="Patient_Appointment">
-              <PropertyRef Name="prescriptionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -830,6 +827,7 @@
           <EntitySet Name="aspnet_SchemaVersions" EntityType="HealthCareNewModel.aspnet_SchemaVersions" />
           <EntitySet Name="aspnet_Users" EntityType="HealthCareNewModel.aspnet_Users" />
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="HealthCareNewModel.aspnet_WebEvent_Events" />
+          <EntitySet Name="Bills" EntityType="HealthCareNewModel.Bill" />
           <EntitySet Name="Doctors" EntityType="HealthCareNewModel.Doctor" />
           <EntitySet Name="Doctor_AppntSlot" EntityType="HealthCareNewModel.Doctor_AppntSlot" />
           <EntitySet Name="Doctor_Room" EntityType="HealthCareNewModel.Doctor_Room" />
@@ -920,10 +918,6 @@
           <AssociationSet Name="FK_Patient_Treatment_Patient" Association="HealthCareNewModel.FK_Patient_Treatment_Patient">
             <End Role="Patient" EntitySet="Patients" />
             <End Role="Patient_Treatment" EntitySet="Patient_Treatment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Patient_Appointment_Patient_Prescription" Association="HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription">
-            <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
-            <End Role="Patient_Appointment" EntitySet="Patient_Appointment" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Treatment_Patient_Prescription" Association="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription">
             <End Role="Patient_Prescription" EntitySet="Patient_Prescription" />
@@ -1097,6 +1091,16 @@
           <Property Type="String" Name="ExceptionType" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Details" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="treatmentId" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Decimal" Name="amount" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="DateTime" Name="dateOfBill" Nullable="false" />
+        </EntityType>
         <EntityType Name="Doctor">
           <Key>
             <PropertyRef Name="id" />
@@ -1115,6 +1119,7 @@
           <Property Type="String" Name="area" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="country" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="postalCode" Nullable="false" />
+          <Property Type="Double" Name="costPerTreatment" />
           <NavigationProperty Name="Doctor_AppntSlot" Relationship="HealthCareNewModel.FK_Doctor_AppntSlot_Doctor" FromRole="Doctor" ToRole="Doctor_AppntSlot" />
           <NavigationProperty Name="Doctor_Room" Relationship="HealthCareNewModel.FK_Doctor_Room_Doctor" FromRole="Doctor" ToRole="Doctor_Room" />
           <NavigationProperty Name="Patient_Appointment" Relationship="HealthCareNewModel.FK_Patient_Appointment_Doctor" FromRole="Doctor" ToRole="Patient_Appointment" />
@@ -1138,11 +1143,12 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="Int32" Name="doctorId" Nullable="false" />
           <Property Type="Int32" Name="roomId" />
           <Property Type="DateTime" Name="startDateTime" />
           <Property Type="DateTime" Name="endDateTime" />
+          <Property Type="Int32" Name="version" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="HealthCareNewModel.FK_Doctor_Room_Doctor" FromRole="Doctor_Room" ToRole="Doctor" />
           <NavigationProperty Name="Room" Relationship="HealthCareNewModel.FK_Doctor_Room_Room" FromRole="Doctor_Room" ToRole="Room" />
         </EntityType>
@@ -1184,12 +1190,10 @@
           <Property Type="Int32" Name="doctorId" Nullable="false" />
           <Property Type="String" Name="upcomingPast" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="slotNo" />
-          <Property Type="Int32" Name="prescriptionId" />
           <Property Type="String" Name="description" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Doctor" Relationship="HealthCareNewModel.FK_Patient_Appointment_Doctor" FromRole="Patient_Appointment" ToRole="Doctor" />
           <NavigationProperty Name="Doctor_AppntSlot" Relationship="HealthCareNewModel.FK_Patient_Appointment_Doctor_AppntSlot" FromRole="Patient_Appointment" ToRole="Doctor_AppntSlot" />
           <NavigationProperty Name="Patient" Relationship="HealthCareNewModel.FK_Patient_Appointment_Patient" FromRole="Patient_Appointment" ToRole="Patient" />
-          <NavigationProperty Name="Patient_Prescription" Relationship="HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription" FromRole="Patient_Appointment" ToRole="Patient_Prescription" />
         </EntityType>
         <EntityType Name="Patient_Prescription">
           <Key>
@@ -1200,7 +1204,6 @@
           <Property Type="DateTime" Name="dateIssued" Nullable="false" />
           <Property Type="Int32" Name="doctorId" Nullable="false" />
           <NavigationProperty Name="Patient" Relationship="HealthCareNewModel.FK_Patient_Prescription_Patient" FromRole="Patient_Prescription" ToRole="Patient" />
-          <NavigationProperty Name="Patient_Appointment" Relationship="HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription" FromRole="Patient_Prescription" ToRole="Patient_Appointment" />
           <NavigationProperty Name="Patient_Treatment" Relationship="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription" FromRole="Patient_Prescription" ToRole="Patient_Treatment" />
           <NavigationProperty Name="Prescription_Medicine" Relationship="HealthCareNewModel.FK_Prescription_Medicine_Patient_Prescription" FromRole="Patient_Prescription" ToRole="Prescription_Medicine" />
         </EntityType>
@@ -1229,6 +1232,7 @@
           <Property Type="DateTime" Name="endDate" />
           <Property Type="Int32" Name="roomId" />
           <Property Type="String" Name="description" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="isAdmitted" />
           <NavigationProperty Name="Doctor" Relationship="HealthCareNewModel.FK_Patient_Treatment_Doctor" FromRole="Patient_Treatment" ToRole="Doctor" />
           <NavigationProperty Name="Patient" Relationship="HealthCareNewModel.FK_Patient_Treatment_Patient" FromRole="Patient_Treatment" ToRole="Patient" />
           <NavigationProperty Name="Patient_Prescription" Relationship="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription" FromRole="Patient_Treatment" ToRole="Patient_Prescription" />
@@ -1286,7 +1290,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="specialization1" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="specialization" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Doctors" Relationship="HealthCareNewModel.Doctor_Specialization" FromRole="Specialization" ToRole="Doctor" />
         </EntityType>
         <EntityType Name="Staff">
@@ -1430,14 +1434,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Doctor_Room_Doctor">
-          <End Type="HealthCareNewModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+          <End Type="HealthCareNewModel.Doctor" Role="Doctor" Multiplicity="1" />
           <End Type="HealthCareNewModel.Doctor_Room" Role="Doctor_Room" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Doctor">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Doctor_Room">
-              <PropertyRef Name="roomId" />
+              <PropertyRef Name="doctorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1534,18 +1538,6 @@
             </Principal>
             <Dependent Role="Patient_Treatment">
               <PropertyRef Name="patientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Patient_Appointment_Patient_Prescription">
-          <End Type="HealthCareNewModel.Patient_Prescription" Role="Patient_Prescription" Multiplicity="0..1" />
-          <End Type="HealthCareNewModel.Patient_Appointment" Role="Patient_Appointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patient_Prescription">
-              <PropertyRef Name="prescriptionId" />
-            </Principal>
-            <Dependent Role="Patient_Appointment">
-              <PropertyRef Name="prescriptionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1755,9 +1747,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="HealthCareNewModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="dateOfBill" ColumnName="dateOfBill" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Doctors">
             <EntityTypeMapping TypeName="HealthCareNewModel.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="costPerTreatment" ColumnName="costPerTreatment" />
                 <ScalarProperty Name="postalCode" ColumnName="postalCode" />
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="area" ColumnName="area" />
@@ -1790,6 +1794,7 @@
           <EntitySetMapping Name="Doctor_Room">
             <EntityTypeMapping TypeName="HealthCareNewModel.Doctor_Room">
               <MappingFragment StoreEntitySet="Doctor_Room">
+                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="endDateTime" ColumnName="endDateTime" />
                 <ScalarProperty Name="startDateTime" ColumnName="startDateTime" />
                 <ScalarProperty Name="roomId" ColumnName="roomId" />
@@ -1828,7 +1833,6 @@
             <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Appointment">
               <MappingFragment StoreEntitySet="Patient_Appointment">
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="prescriptionId" ColumnName="prescriptionId" />
                 <ScalarProperty Name="slotNo" ColumnName="slotNo" />
                 <ScalarProperty Name="upcomingPast" ColumnName="upcomingPast" />
                 <ScalarProperty Name="doctorId" ColumnName="doctorId" />
@@ -1863,6 +1867,7 @@
           <EntitySetMapping Name="Patient_Treatment">
             <EntityTypeMapping TypeName="HealthCareNewModel.Patient_Treatment">
               <MappingFragment StoreEntitySet="Patient_Treatment">
+                <ScalarProperty Name="isAdmitted" ColumnName="isAdmitted" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="roomId" ColumnName="roomId" />
                 <ScalarProperty Name="endDate" ColumnName="endDate" />
@@ -1923,7 +1928,7 @@
           <EntitySetMapping Name="Specializations">
             <EntityTypeMapping TypeName="HealthCareNewModel.Specialization">
               <MappingFragment StoreEntitySet="Specialization">
-                <ScalarProperty Name="specialization1" ColumnName="specialization" />
+                <ScalarProperty Name="specialization" ColumnName="specialization" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1958,7 +1963,7 @@
           </AssociationSetMapping>
           <AssociationSetMapping Name="Doctor_Specialization" TypeName="HealthCareNewModel.Doctor_Specialization" StoreEntitySet="Doctor_Specialization">
             <EndProperty Name="Specialization">
-              <ScalarProperty Name="id" ColumnName="specization" />
+              <ScalarProperty Name="id" ColumnName="specialization" />
             </EndProperty>
             <EndProperty Name="Doctor">
               <ScalarProperty Name="id" ColumnName="doctor" />
@@ -1984,174 +1989,179 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="HumanCare" ZoomLevel="99">
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Applications" Width="1.5" PointX="8.75" PointY="8.625" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Membership" Width="1.5" PointX="14" PointY="10.125" Height="5.4417122395833388" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Paths" Width="1.5" PointX="11" PointY="7.125" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="13.25" PointY="7.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="13.25" PointY="4.125" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Profile" Width="1.5" PointX="18.5" PointY="12.625" Height="2.172587890624996" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Roles" Width="1.5" PointX="11" PointY="16.5" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_SchemaVersions" Width="1.5" PointX="5.75" PointY="1.5" Height="1.5956835937500102" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Users" Width="1.5" PointX="16.25" PointY="12" Height="3.3263964843750102" />
-        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_WebEvent_Events" Width="1.5" PointX="10.75" PointY="10.5" Height="3.9033007812500102" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Doctor" Width="1.5" PointX="0.75" PointY="6.125" Height="4.6725065104166674" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Doctor_AppntSlot" Width="1.5" PointX="3" PointY="6" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Doctor_Room" Width="1.5" PointX="3" PointY="10.375" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Nationality" Width="1.5" PointX="7.75" PointY="1.5" Height="1.4033821614583246" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Patient" Width="1.5" PointX="3" PointY="0.75" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Appointment" Width="1.5" PointX="5.25" PointY="6.75" Height="3.326396484374996" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Prescription" Width="1.5" PointX="3" PointY="19.625" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Room" Width="1.5" PointX="8.25" PointY="4.625" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Treatment" Width="1.5" PointX="6" PointY="11" Height="3.1340950520833246" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Prescription_Medicine" Width="1.5" PointX="5.25" PointY="19.625" Height="2.557190755208353" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Room" Width="1.5" PointX="0.75" PointY="11.875" Height="3.3263964843749818" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Room_Type" Width="1.5" PointX="1.5" PointY="23.5" Height="1.980286458333353" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Slot" Width="1.5" PointX="9.75" PointY="1.5" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Specialization" Width="1.5" PointX="3" PointY="16.375" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="HealthCareNewModel.Staff" Width="1.5" PointX="3" PointY="26.5" Height="3.9033007812499818" />
+      <Diagram Name="HumanCare" ZoomLevel="90">
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Applications" Width="1.5" PointX="7.75" PointY="15" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Membership" Width="1.5" PointX="13" PointY="16.5" Height="5.4417122395833246" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Paths" Width="1.5" PointX="10" PointY="13.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="12.25" PointY="13.875" Height="1.7879850260416248" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="12.25" PointY="10.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Profile" Width="1.5" PointX="17.5" PointY="19" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Roles" Width="1.5" PointX="10" PointY="22.875" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="1.875" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_Users" Width="1.5" PointX="15.25" PointY="18.5" Height="3.3263964843749818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.aspnet_WebEvent_Events" Width="1.5" PointX="8.75" PointY="1.875" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Bill" Width="1.5" PointX="10.75" PointY="1.875" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Doctor" Width="1.5" PointX="0.75" PointY="6.5" Height="4.8648079427083522" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Doctor_AppntSlot" Width="1.5" PointX="3" PointY="6.5" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Doctor_Room" Width="1.5" PointX="3" PointY="10.625" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Nationality" Width="1.5" PointX="10.75" PointY="4.875" Height="1.403382161458353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient" Width="1.5" PointX="3.75" PointY="0.75" Height="4.0956022135416106" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Appointment" Width="1.5" PointX="5.25" PointY="7.375" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Prescription" Width="1.5" PointX="3.75" PointY="19.625" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Room" Width="1.5" PointX="8" PointY="7.875" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Patient_Treatment" Width="1.5" PointX="6" PointY="3.25" Height="3.3263964843749818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Prescription_Medicine" Width="1.5" PointX="6" PointY="19.5" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Room" Width="1.5" PointX="0.75" PointY="12.25" Height="3.3263964843749818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Room_Type" Width="1.5" PointX="1.5" PointY="19.875" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Slot" Width="1.5" PointX="5.75" PointY="11.875" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Specialization" Width="1.5" PointX="3" PointY="17.125" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="HealthCareNewModel.Staff" Width="1.5" PointX="3" PointY="23" Height="3.9033007812499818" />
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Me__Appli__11D4A34F" >
-          <ConnectorPoint PointX="10.25" PointY="10.28125" />
-          <ConnectorPoint PointX="14" PointY="10.28125" />
+          <ConnectorPoint PointX="9.25" PointY="17.028595377604177" />
+          <ConnectorPoint PointX="13" PointY="17.028595377604177" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Pa__Appli__4B0D20AB" >
-          <ConnectorPoint PointX="10.25" PointY="9.0574446614583337" />
-          <ConnectorPoint PointX="11" PointY="9.0574446614583337" />
+          <ConnectorPoint PointX="9.25" PointY="15.432444661458334" />
+          <ConnectorPoint PointX="10" PointY="15.432444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Ro__Appli__3429BB53" >
-          <ConnectorPoint PointX="9.5" PointY="11.182190755208325" />
-          <ConnectorPoint PointX="9.5" PointY="17.682444661458334" />
-          <ConnectorPoint PointX="11" PointY="17.682444661458334" />
+          <ConnectorPoint PointX="8.5" PointY="17.557190755208353" />
+          <ConnectorPoint PointX="8.5" PointY="24.057444661458334" />
+          <ConnectorPoint PointX="10" PointY="24.057444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Us__Appli__7DCDAAA2" >
-          <ConnectorPoint PointX="10.25" PointY="9.8074446614583337" />
-          <ConnectorPoint PointX="16.510414166666667" PointY="9.8074446614583337" />
-          <ConnectorPoint PointX="16.677080833333331" PointY="9.8074446614583337" />
-          <ConnectorPoint PointX="17" PointY="9.8074446614583337" />
-          <ConnectorPoint PointX="17" PointY="12" />
+          <ConnectorPoint PointX="9.25" PointY="16.182444661458334" />
+          <ConnectorPoint PointX="15.510414166666665" PointY="16.182444661458334" />
+          <ConnectorPoint PointX="15.677080833333333" PointY="16.182444661458334" />
+          <ConnectorPoint PointX="16" PointY="16.182444661458334" />
+          <ConnectorPoint PointX="16" PointY="18.5" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Me__UserI__12C8C788" >
-          <ConnectorPoint PointX="16.25" PointY="13.663198242187505" />
-          <ConnectorPoint PointX="15.5" PointY="13.663198242187505" />
+          <ConnectorPoint PointX="15.25" PointY="20.163198242187491" />
+          <ConnectorPoint PointX="14.5" PointY="20.163198242187491" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Pe__PathI__52AE4273" >
-          <ConnectorPoint PointX="12.5" PointY="8.2689925130208337" />
-          <ConnectorPoint PointX="13.25" PointY="8.2689925130208337" />
+          <ConnectorPoint PointX="11.5" PointY="14.768992513020812" />
+          <ConnectorPoint PointX="12.25" PointY="14.768992513020812" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Pe__PathI__58671BC9" >
-          <ConnectorPoint PointX="11.75" PointY="7.125" />
-          <ConnectorPoint PointX="11.75" PointY="5.3074446614583337" />
-          <ConnectorPoint PointX="13.25" PointY="5.3074446614583337" />
+          <ConnectorPoint PointX="10.75" PointY="13.5" />
+          <ConnectorPoint PointX="10.75" PointY="11.682444661458334" />
+          <ConnectorPoint PointX="12.25" PointY="11.682444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Pe__UserI__595B4002" >
-          <ConnectorPoint PointX="16.5937475" PointY="12" />
-          <ConnectorPoint PointX="16.5937475" PointY="5.3074446614583337" />
-          <ConnectorPoint PointX="14.75" PointY="5.3074446614583337" />
+          <ConnectorPoint PointX="15.5937475" PointY="18.5" />
+          <ConnectorPoint PointX="15.5937475" PointY="11.682444661458334" />
+          <ConnectorPoint PointX="13.75" PointY="11.682444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK__aspnet_Pr__UserI__28B808A7" >
-          <ConnectorPoint PointX="17.75" PointY="13.711293945312498" />
-          <ConnectorPoint PointX="18.5" PointY="13.711293945312498" />
+          <ConnectorPoint PointX="16.75" PointY="20.086293945312491" />
+          <ConnectorPoint PointX="17.5" PointY="20.086293945312491" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Doctor_AppntSlot_Doctor" >
-          <ConnectorPoint PointX="2.25" PointY="7.3410953776041694" />
-          <ConnectorPoint PointX="3" PointY="7.3410953776041694" />
+          <ConnectorPoint PointX="2.25" PointY="7.7785953776041765" />
+          <ConnectorPoint PointX="3" PointY="7.7785953776041765" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Doctor_Room_Doctor" >
-          <ConnectorPoint PointX="2.25" PointY="10.586253255208334" />
-          <ConnectorPoint PointX="3" PointY="10.586253255208334" />
+          <ConnectorPoint PointX="2.25" PointY="10.994903971354177" />
+          <ConnectorPoint PointX="3" PointY="10.994903971354177" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Appointment_Doctor" >
-          <ConnectorPoint PointX="2.25" PointY="9.3480436197916674" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.3480436197916656" />
-          <ConnectorPoint PointX="5.114583333333333" PointY="9.3480436197916674" />
-          <ConnectorPoint PointX="5.25" PointY="9.3480436197916674" />
+          <ConnectorPoint PointX="2.25" PointY="9.71824218750001" />
+          <ConnectorPoint PointX="4.572916666666667" PointY="9.7182421875000085" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="9.71824218750001" />
+          <ConnectorPoint PointX="4.9791691666666669" PointY="9.71824218750001" />
+          <ConnectorPoint PointX="5.1458358333333329" PointY="9.71824218750001" />
+          <ConnectorPoint PointX="5.25" PointY="9.71824218750001" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Treatment_Doctor" >
-          <ConnectorPoint PointX="2.25" PointY="10.225698242187498" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="10.225698242187496" />
-          <ConnectorPoint PointX="5.114583333333333" PointY="10.225698242187498" />
-          <ConnectorPoint PointX="7.15625" PointY="10.225698242187498" />
-          <ConnectorPoint PointX="7.15625" PointY="11" />
+          <ConnectorPoint PointX="2.25" PointY="10.470896809895834" />
+          <ConnectorPoint PointX="4.572916666666667" PointY="10.470896809895832" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="10.470896809895834" />
+          <ConnectorPoint PointX="7.15625" PointY="10.470896809895834" />
+          <ConnectorPoint PointX="7.15625" PointY="6.5763964843749818" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Appointment_Doctor_AppntSlot" >
-          <ConnectorPoint PointX="4.5" PointY="7.6535953776041694" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="7.6535953776041685" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="7.6535953776041694" />
-          <ConnectorPoint PointX="5.25" PointY="7.6535953776041694" />
+          <ConnectorPoint PointX="4.5" PointY="8.2160953776041765" />
+          <ConnectorPoint PointX="4.572916666666667" PointY="8.2160953776041747" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="8.2160953776041765" />
+          <ConnectorPoint PointX="4.9791691666666669" PointY="8.2160953776041765" />
+          <ConnectorPoint PointX="5.1458358333333329" PointY="8.2160953776041765" />
+          <ConnectorPoint PointX="5.25" PointY="8.2160953776041765" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Doctor_Room_Room" >
-          <ConnectorPoint PointX="2.25" PointY="12.307444661458334" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="12.307444661458334" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="12.307444661458334" />
-          <ConnectorPoint PointX="3" PointY="12.307444661458334" />
+          <ConnectorPoint PointX="2.25" PointY="12.716095377604177" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="12.716095377604177" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="12.716095377604177" />
+          <ConnectorPoint PointX="3" PointY="12.716095377604177" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Appointment_Patient" >
-          <ConnectorPoint PointX="4.5" PointY="4.0018929036458388" />
-          <ConnectorPoint PointX="5.46875" PointY="4.0018929036458388" />
-          <ConnectorPoint PointX="5.46875" PointY="6.75" />
+          <ConnectorPoint PointX="4.875" PointY="4.8456022135416106" />
+          <ConnectorPoint PointX="4.875" PointY="9.3877139713541879" />
+          <ConnectorPoint PointX="4.9791691666666669" PointY="9.3877139713541879" />
+          <ConnectorPoint PointX="5.1458358333333329" PointY="9.3877139713541879" />
+          <ConnectorPoint PointX="5.25" PointY="9.3877139713541879" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Prescription_Patient" >
-          <ConnectorPoint PointX="4.5" PointY="4.8456022135416674" />
-          <ConnectorPoint PointX="4.875" PointY="5.2206022135416674" />
-          <ConnectorPoint PointX="4.875" PointY="19.213076923076922" />
-          <ConnectorPoint PointX="4.4630769230769225" PointY="19.625" />
+          <ConnectorPoint PointX="4.65625" PointY="4.8456022135416106" />
+          <ConnectorPoint PointX="4.65625" PointY="19.625" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Room_Patient" >
-          <ConnectorPoint PointX="4.5" PointY="3.5487857486979308" />
-          <ConnectorPoint PointX="9.5" PointY="3.5487857486979308" />
-          <ConnectorPoint PointX="9.5" PointY="4.625" />
+          <ConnectorPoint PointX="5.0625025" PointY="4.8456022135416106" />
+          <ConnectorPoint PointX="5.0625025" PointY="10.40574218750001" />
+          <ConnectorPoint PointX="8" PointY="10.40574218750001" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Treatment_Patient" >
-          <ConnectorPoint PointX="4.5" PointY="4.4237475585937531" />
-          <ConnectorPoint PointX="5.385416666666667" PointY="4.4237475585937522" />
-          <ConnectorPoint PointX="5.552083333333333" PointY="4.4237475585937531" />
-          <ConnectorPoint PointX="7.40625" PointY="4.4237475585937531" />
-          <ConnectorPoint PointX="7.40625" PointY="11" />
-        </AssociationConnector>
-        <AssociationConnector Association="HealthCareNewModel.FK_Patient_Appointment_Patient_Prescription" >
-          <ConnectorPoint PointX="4.5" PointY="19.626152846153843" />
-          <ConnectorPoint PointX="5.03125" PointY="19.094902846153843" />
-          <ConnectorPoint PointX="5.03125" PointY="8.5008194986979184" />
-          <ConnectorPoint PointX="5.25" PointY="8.5008194986979184" />
+          <ConnectorPoint PointX="5.25" PointY="4.0478011067708053" />
+          <ConnectorPoint PointX="6" PointY="4.0478011067708053" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Treatment_Patient_Prescription" >
-          <ConnectorPoint PointX="4.5" PointY="19.694229769230766" />
-          <ConnectorPoint PointX="5.15625" PointY="19.037979769230766" />
-          <ConnectorPoint PointX="5.15625" PointY="12.567047526041662" />
-          <ConnectorPoint PointX="6" PointY="12.567047526041662" />
+          <ConnectorPoint PointX="4.171873" PointY="19.625" />
+          <ConnectorPoint PointX="4.171873" PointY="18.970683593749982" />
+          <ConnectorPoint PointX="4.572916666666667" PointY="18.970683593749982" />
+          <ConnectorPoint PointX="4.739583333333333" PointY="18.970683593749982" />
+          <ConnectorPoint PointX="4.75" PointY="18.970683593749982" />
+          <ConnectorPoint PointX="4.75" PointY="5.0956022135416106" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="5.09560221354161" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="5.0956022135416106" />
+          <ConnectorPoint PointX="4.9791691666666669" PointY="5.09560221354161" />
+          <ConnectorPoint PointX="5.1458358333333329" PointY="5.0956022135416106" />
+          <ConnectorPoint PointX="5.5" PointY="5.0956022135416106" />
+          <ConnectorPoint PointX="5.5" PointY="5.3433507955729436" />
+          <ConnectorPoint PointX="6" PointY="5.3433507955729436" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Prescription_Medicine_Patient_Prescription" >
-          <ConnectorPoint PointX="4.5" PointY="20.969462762219539" />
-          <ConnectorPoint PointX="5.25" PointY="20.969462762219539" />
+          <ConnectorPoint PointX="5.25" PointY="20.807444661458334" />
+          <ConnectorPoint PointX="6" PointY="20.807444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Patient_Room_Room" >
-          <ConnectorPoint PointX="2.25" PointY="14.698995768229153" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="14.698995768229153" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="14.698995768229153" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="14.698995768229151" />
-          <ConnectorPoint PointX="5.239583333333333" PointY="14.698995768229153" />
-          <ConnectorPoint PointX="8.46875" PointY="14.698995768229153" />
-          <ConnectorPoint PointX="8.46875" PointY="7.1821907552083246" />
+          <ConnectorPoint PointX="2.25" PointY="14.235341796874991" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="14.235341796874991" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="14.235341796874991" />
+          <ConnectorPoint PointX="4.572916666666667" PointY="14.235341796874989" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="14.235341796874991" />
+          <ConnectorPoint PointX="9.40625" PointY="14.235341796874991" />
+          <ConnectorPoint PointX="9.40625" PointY="10.432190755208353" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Room_Room_Type" >
-          <ConnectorPoint PointX="1.875" PointY="23.5" />
-          <ConnectorPoint PointX="1.875" PointY="15.201396484374982" />
+          <ConnectorPoint PointX="1.875" PointY="19.875" />
+          <ConnectorPoint PointX="1.875" PointY="15.576396484374982" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.FK_Staff_Room" >
-          <ConnectorPoint PointX="1.09375" PointY="15.201396484374982" />
-          <ConnectorPoint PointX="1.09375" PointY="28.451650390624991" />
-          <ConnectorPoint PointX="3" PointY="28.451650390624991" />
+          <ConnectorPoint PointX="1.09375" PointY="15.576396484374982" />
+          <ConnectorPoint PointX="1.09375" PointY="24.951650390624991" />
+          <ConnectorPoint PointX="3" PointY="24.951650390624991" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.aspnet_UsersInRoles" >
-          <ConnectorPoint PointX="12.5" PointY="17.682444661458334" />
-          <ConnectorPoint PointX="17" PointY="17.682444661458334" />
-          <ConnectorPoint PointX="17" PointY="15.32639648437501" />
+          <ConnectorPoint PointX="11.5" PointY="24.057444661458334" />
+          <ConnectorPoint PointX="16" PointY="24.057444661458334" />
+          <ConnectorPoint PointX="16" PointY="21.826396484374982" />
         </AssociationConnector>
         <AssociationConnector Association="HealthCareNewModel.Doctor_Specialization" >
-          <ConnectorPoint PointX="2.2499999999999996" PointY="10.797506510416667" />
-          <ConnectorPoint PointX="2.625" PointY="11.172506510416667" />
-          <ConnectorPoint PointX="2.625" PointY="17.172841796874991" />
-          <ConnectorPoint PointX="3" PointY="17.172841796874991" />
+          <ConnectorPoint PointX="2.2499999999999987" PointY="11.364807942708353" />
+          <ConnectorPoint PointX="2.625" PointY="11.739807942708353" />
+          <ConnectorPoint PointX="2.625" PointY="17.922841796874991" />
+          <ConnectorPoint PointX="3" PointY="17.922841796874991" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

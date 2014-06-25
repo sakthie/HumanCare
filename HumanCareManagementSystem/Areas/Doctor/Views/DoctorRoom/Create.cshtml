@@ -1,0 +1,101 @@
+﻿@model Humancare.Data.Doctor_Room
+
+<div id="target">
+@Html.Partial("DoctorNavigationPartial")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+     @Scripts.Render("~/bundles/jquery")
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jqueryui")
+
+       
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.datepicker.setDefaults({ dateFormat: 'MM/dd/yyyy' });
+
+           <!-- $("#startDateTime").datepicker({
+                dateFormat: 'mm/dd/yyyy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#endDateTime").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });-->
+        });
+    </script>
+} 
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "DoctorRoom",
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "target"
+            })) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Doctor Room</legend>
+        <div>@ViewBag.errorMessage</div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.doctorId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.doctorId, new SelectList(
+                   ViewBag.DoctorList ,
+                  "id",
+                  "name",
+                   ViewBag.SelectedDoctorId))
+            @Html.ValidationMessageFor(model => model.doctorId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.roomId)
+        </div>
+        <div class="editor-field">
+             @Html.DropDownListFor(model => model.roomId, new SelectList(
+                  ViewBag.RoomList,
+                  "roomId",
+                  "roomNum",
+                   ViewBag.SelectedRoomId))
+            @Html.ValidationMessageFor(model => model.roomId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.startDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.startDateTime)
+            @Html.ValidationMessageFor(model => model.startDateTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.endDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.endDateTime)
+            @Html.ValidationMessageFor(model => model.endDateTime)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+</div>

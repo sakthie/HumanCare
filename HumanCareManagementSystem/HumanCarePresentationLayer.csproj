@@ -163,11 +163,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Clerk\ClerkAreaRegistration.cs" />
+    <Compile Include="Areas\Doctor\Controllers\DoctorController.cs" />
+    <Compile Include="Areas\Doctor\Controllers\DoctorRoomController.cs" />
     <Compile Include="Areas\Doctor\Controllers\SpecializationController.cs" />
     <Compile Include="Areas\Doctor\DoctorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PatientRoomBookingController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -310,7 +311,6 @@
     <Folder Include="Areas\Clerk\Models\" />
     <Folder Include="Areas\Clerk\Views\Shared\" />
     <Folder Include="Areas\Doctor\Models\" />
-    <Folder Include="Areas\Doctor\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -367,6 +367,35 @@
     <Content Include="Areas\Doctor\Views\Specialization\Delete.cshtml" />
     <Content Include="Areas\Doctor\Views\Specialization\Edit.cshtml" />
     <Content Include="Areas\Doctor\Views\Specialization\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Doctor\Views\Doctor\Create.cshtml" />
+    <Content Include="Areas\Doctor\Views\Doctor\Delete.cshtml" />
+    <Content Include="Areas\Doctor\Views\Doctor\Details.cshtml" />
+    <Content Include="Areas\Doctor\Views\Doctor\Edit.cshtml" />
+    <Content Include="Areas\Doctor\Views\Doctor\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Doctor\Views\DoctorRoom\Create.cshtml" />
+    <Content Include="Areas\Doctor\Views\DoctorRoom\Delete.cshtml" />
+    <Content Include="Areas\Doctor\Views\DoctorRoom\Details.cshtml" />
+    <Content Include="Areas\Doctor\Views\DoctorRoom\Edit.cshtml" />
+    <Content Include="Areas\Doctor\Views\DoctorRoom\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Doctor\Views\Shared\DoctorNavigationPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Doctor\Views\Specialization\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Doctor\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
